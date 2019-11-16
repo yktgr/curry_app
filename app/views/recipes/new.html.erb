@@ -1,0 +1,15 @@
+<h1>Recipes#new</h1>
+<p>Find me in app/views/recipes/new.html.erb</p>
+
+<table>
+<%= form_with(model: @recipe, local: true) do |f| %>
+  <tr><th><%= f.label :name %></th>
+      <td><%= f.text_field :name %></td></tr>
+
+  <tr><th><%= f.label :curry_type %></th>
+      <td><%= f.select :curry_type ,Recipe.curry_types.keys.map{|k| [Recipe.curry_types[k], k]}%></td></tr>
+
+      <tr><td><%= f.submit "submit" %></td></tr>
+</table>
+<% end %>
+<%= link_to "index",recipes_path %>
