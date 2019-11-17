@@ -3,6 +3,7 @@
 
 <table>
 <% @recipes.each do |recipe| %>
+  <tr><th>レシピ</th><td><%= image_tag recipe.picture.url %></td></tr>
   <tr><th>レシピ</th><td><%= recipe.name %></td></tr>
   <tr><th>内容</th><td><%= recipe.content %></td></tr>
   <tr><th>タイプ</th><td><%= recipe.curry_type %></td></tr>
