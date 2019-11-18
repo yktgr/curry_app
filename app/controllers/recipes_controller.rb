@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action:set_recipe,only:[:edit,:update,:show,:destroy]
   def index
     @recipes = Recipe.all
   end
@@ -6,6 +7,8 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe.materials.build
+    @recipe.flows.build
+
   end
 
   def create
@@ -18,7 +21,7 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    Recipe.find(params[:id]).destroy
+    @recipe.delete
     redirect_to recipes_path
   end
 
@@ -26,6 +29,11 @@ class RecipesController < ApplicationController
   end
 
   def update
+    if @recipe.update(recipe_params)
+      redirect_to recipes_path,notice:"編集しました"
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -33,8 +41,13 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name,:picture,:image_cache,:content,:curry_type,
-      materials_attributes: [:name,:amount,:recipe_id]
+    params.require(:recipe).permit(:name,:picture,:content,:curry_type,
+      materials_attributes: [:name,:amount,:recipe_id,:_destroy],
+      flows_attributes: [:content,:picture,:recipe_id,:_destroy]
     )
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end
