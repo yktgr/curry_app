@@ -8,6 +8,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <header>
+    <%= link_to 'top', recipes_path %>
+    <%= link_to 'new', new_recipe_path %>
+  </header>
 
   <body>
     <%= yield %>

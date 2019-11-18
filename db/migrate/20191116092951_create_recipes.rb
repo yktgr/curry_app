@@ -5,7 +5,6 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.string :picture
       t.text :content
       t.integer :curry_type
-
       t.timestamps
     end
   end
