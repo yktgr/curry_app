@@ -1,0 +1,27 @@
+<h1>Recipes#show</h1>
+<p>Find me in app/views/recipes/show.html.erb</p>
+
+
+<%= image_tag @recipe.picture.url  if @recipe.picture.url.present? %>
+<%= @recipe.name %>
+
+<table>
+  <tr><th>素材</th><th>量</th></tr>
+  <% @recipe.materials.each do |material|  %>
+  <tr><td><%= material.name %></td>
+  <td><%= material.amount %></td></tr>
+  <% end %>
+</table>
+
+
+<table>
+  <% @recipe.flows.each_with_index do |flow,i| %>
+  <tr><th><%= i + 1 %>.</th></tr>
+  <tr><th></th><td><%= image_tag flow.picture.url if flow.picture.url.present?  %></td></tr>
+  <tr><th></th><td><%= flow.content %></td></tr>
+  <% end %>
+</table>
+
+<%= link_to "edit",edit_recipe_path(@recipe.id) %>
+<%= link_to "delete",recipe_path(@recipe.id),method: :delete %>
+<%= link_to '戻る', :back %>

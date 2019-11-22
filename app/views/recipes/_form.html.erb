@@ -1,0 +1,38 @@
+
+<% @recipe.errors.full_messages.each do |msg| %>
+  <div><%= msg %></div>
+<% end %>
+    <%= form_for @recipe do |f| %>
+    <table>
+      <tr><th><%= f.label :レシピ %></th><td><%= f.text_field :name %></td></tr>
+      <tr><th><%= f.label :説明 %></th><td><%= f.text_area :content %></td></tr>
+      <tr><th><%= f.label :タイプ %></th><td><%= f.select :curry_type ,Recipe.curry_types.keys,{} %></td></tr>
+      <tr><th><%= f.label :image %></th><td><%= f.file_field :picture %></td></tr>
+    </table>
+
+      <table>
+       <tbody>
+         <tr><th>素材</th><th>量</th></tr>
+          <%= f.nested_fields_for :materials,wrapper_tag: :tr do |material| %>
+            <td><%= material.text_field :name %></td><td><%= material.text_field :amount %></td>
+            <td><%= material.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+           <% end %>
+         <td><%= f.add_nested_fields_link :materials, 'Add', class: 'btn btn-primary', role: 'button'%></td>
+       </tbody>
+     </table>
+
+     <table>
+      <tbody>
+        <tr><th>画像</th><th>内容</th></tr>
+          <%= f.nested_fields_for :flows,wrapper_tag: :tr do |flow| %>
+              <td><%= flow.file_field :picture %></td>
+              <td><%= flow.text_area :content %></td>
+              <td><%= flow.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %></td>
+          <% end %>
+      <td><%= f.add_nested_fields_link :flows, 'Add', class: 'btn btn-primary', role: 'button'%></td>
+    </tbody>
+  </table>
+
+
+      <%= f.submit %>
+<% end %>
