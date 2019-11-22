@@ -4,7 +4,6 @@
 
 <%= image_tag @recipe.picture.url  if @recipe.picture.url.present? %>
 <%= @recipe.name %>
-
 <table>
   <tr><th>素材</th><th>量</th></tr>
   <% @recipe.materials.each do |material|  %>
@@ -12,8 +11,6 @@
   <td><%= material.amount %></td></tr>
   <% end %>
 </table>
-
-
 <table>
   <% @recipe.flows.each_with_index do |flow,i| %>
   <tr><th><%= i + 1 %>.</th></tr>
@@ -21,7 +18,13 @@
   <tr><th></th><td><%= flow.content %></td></tr>
   <% end %>
 </table>
-
+<% unless @recipe.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'お気に入り解除する', recipe_like_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入りする',  recipe_likes_path(recipe_id: @recipe.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
 <%= link_to "edit",edit_recipe_path(@recipe.id) %>
 <%= link_to "delete",recipe_path(@recipe.id),method: :delete %>
 <%= link_to '戻る', :back %>
