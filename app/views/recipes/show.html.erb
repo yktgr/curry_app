@@ -1,6 +1,4 @@
 <h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
-
 
 <%= image_tag @recipe.picture.url  if @recipe.picture.url.present? %>
 <%= @recipe.name %>
@@ -18,6 +16,7 @@
   <tr><th></th><td><%= flow.content %></td></tr>
   <% end %>
 </table>
+
 <% unless @recipe.user_id == current_user.id %>
   <% if @favorite.present? %>
     <%= link_to 'お気に入り解除する', recipe_like_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
@@ -25,6 +24,11 @@
     <%= link_to 'お気に入りする',  recipe_likes_path(recipe_id: @recipe.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
+
+<div id ="comments_area">
+<%= render partial: 'comments/index', locals: {comments: @comments, recipe: @recipe} %>
+<%= render partial: 'comments/form', locals: {comment: @comment, recipe: @recipe} %>
+</div>
 <%= link_to "edit",edit_recipe_path(@recipe.id) %>
 <%= link_to "delete",recipe_path(@recipe.id),method: :delete %>
 <%= link_to '戻る', :back %>

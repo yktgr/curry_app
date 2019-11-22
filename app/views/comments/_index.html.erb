@@ -1,0 +1,12 @@
+
+<ul>
+  <% @comments.each do |comment| %>
+    <% if comment.id.present? %>
+      <li>
+        <%= comment.content %>
+          <%= link_to 'delete', recipe_comment_path(comment.recipe.id, comment.id), method: :delete, remote: true %>
+      </li>
+
+    <% end %>
+  <% end %>
+</ul>
