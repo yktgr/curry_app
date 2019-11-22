@@ -9,7 +9,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     @recipe.materials.build
     @recipe.flows.build
-
   end
 
   def create
@@ -38,6 +37,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @favorite = current_user.recipe_likes.find_by(recipe_id: @recipe.id)
   end
 
   private

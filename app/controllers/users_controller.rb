@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @recipes = @user.recipes.all
+    @recipe_likes =  current_user.recipe_likes
   end
 
   def edit

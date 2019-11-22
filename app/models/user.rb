@@ -3,4 +3,5 @@ class User < ApplicationRecord
   mount_uploader :picture, ImageUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :recipe_likes, dependent: :destroy
 end
