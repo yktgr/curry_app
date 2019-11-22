@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe.delete
+    @recipe.destroy
     redirect_to recipes_path
   end
 
