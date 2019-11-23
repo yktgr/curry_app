@@ -1,0 +1,8 @@
+enums:
+  task:
+    recipe_type:
+      chicken: "チキン"
+      beef: "ビーフ"
+      pork: "ポーク"
+      vege: "ベジ"
+      other: "他"

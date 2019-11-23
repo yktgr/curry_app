@@ -1,6 +1,13 @@
 <h1>Recipes#index</h1>
-<table>
-<% @recipes.each do |recipe| %>
+
+<% if @search_recipes %>
+  <% recipes = @search_recipes %>
+<% else %>
+  <% recipes = @recipes %>
+<% end %>
+
+<table class="row-md-3">
+<% recipes.each do |recipe| %>
   <tr><th></th><td><%= image_tag recipe.picture.url if recipe.picture.url.present? %></td></tr>
   <tr><th>レシピ</th><td><%= recipe.name %></td></tr>
   <tr><th>内容</th><td><%= recipe.content %></td></tr>

@@ -6,7 +6,7 @@
     <table>
       <tr><th><%= f.label :レシピ %></th><td><%= f.text_field :name %></td></tr>
       <tr><th><%= f.label :説明 %></th><td><%= f.text_area :content %></td></tr>
-      <tr><th><%= f.label :タイプ %></th><td><%= f.select :curry_type ,Recipe.curry_types.keys,{} %></td></tr>
+      <tr><th><%= f.label :タイプ %></th><td><%= f.select :curry_type, Recipe.curry_types.keys %></td></tr>
       <tr><th><%= f.label :image %></th><td><%= f.file_field :picture %></td></tr>
     </table>
 

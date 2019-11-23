@@ -8,24 +8,35 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    <% if user_signed_in? %>
-       <%= link_to "top", recipes_path %>
-       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-       <%= link_to "my page",user_path(current_user.id) %>
-    <% else %>
-       <%= link_to "新規登録", new_user_registration_path %>
-       <%= link_to "ログイン", new_user_session_path %>
-     <% end %>
-  </header>
+
 
   <body>
+<div class="container">
+    <header class="col">
+      <% if user_signed_in? %>
+         <%= link_to "top", recipes_path %>
+         <%= link_to "logout", destroy_user_session_path, method: :delete %>
+         <%= link_to "my page",user_path(current_user.id) %>
+      <% else %>
+         <%= link_to "sing up", new_user_registration_path %>
+         <%= link_to "login", new_user_session_path %>
+       <% end %>
+
+          <div class = " form-group ">
+        <%= search_form_for @search, url: recipes_path do |f| %>
+          <%= f.text_field :name_cont, placeholder: '店名...' %>
+          <%= f.select :curry_type_eq ,Recipe.curry_types.map{|k,v| [Recipe.curry_types_i18n[k], v]}, include_blank: true%>
+          <%= f.submit("search") %>
+        <% end %>
+    </header>
+
     <% if notice %>
-    <p class="alert alert-notice"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-error"><%= alert %></p>
-  <% end %>
+      <p class="alert alert-notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+    <% end %>
     <%= yield %>
+    </div>
   </body>
 </html>
