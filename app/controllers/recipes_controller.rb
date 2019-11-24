@@ -38,6 +38,8 @@ class RecipesController < ApplicationController
 
   def show
     @favorite = current_user.recipe_likes.find_by(recipe_id: @recipe.id)
+    @comment = @recipe.comments.build
+    @comments = @recipe.comments
   end
 
   private
@@ -48,7 +50,5 @@ class RecipesController < ApplicationController
     )
   end
 
-  def set_recipe
-    @recipe = Recipe.find(params[:id])
-  end
+
 end

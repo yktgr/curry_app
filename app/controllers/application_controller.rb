@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     @search = Recipe.ransack(params[:q]||{curry_type_in: Recipe.curry_types.values})
     @search_recipes = @search.result(distinct: true)
   end
+  
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 
   protected
   def configure_permitted_parameters
