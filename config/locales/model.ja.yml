@@ -3,19 +3,31 @@ ja:
     models:
       recipe: "レシピ"
       user: "ユーザー"
+      material: "材料"
+      commnent: "コメント"
+      recipe_like: "お気に入りレシピ"
+      flow: "調理方法"
+
     attributes:
       recipe:
-        name: "レシピ名"
-        content: "内容"
-      contact:
-        name: "名前"
-        email: "メールアドレス"
-        content: "内容"
+        name: "レシピ"
+        content: "紹介"
+        picture: "画像"
+        curry_type: "カレータイプ"
       user:
-        title: "タイトル"
         name: "名前"
+        picture: "画像"
         email: "メールアドレス"
-        current_password: "現在のパスワード"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
-        remember_me: "ログインを記憶"
+      material:
+        name: "材料"
+        amount: "分量"
+      recipe/materials:
+        name: "材料"
+        amount: "分量"
+      commnent:
+        content:　"コメント"
+      flow:
+        content: "料理方法"
+        picture: "料理画像"
