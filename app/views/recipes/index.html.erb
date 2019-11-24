@@ -1,13 +1,21 @@
 <h1>Recipes#index</h1>
-<table>
-<% @recipes.each do |recipe| %>
-  <tr><th></th><td><%= image_tag recipe.picture.url if recipe.picture.url.present? %></td></tr>
-  <tr><th>レシピ</th><td><%= recipe.name %></td></tr>
-  <tr><th>内容</th><td><%= recipe.content %></td></tr>
-  <tr><th>タイプ</th><td><%= recipe.curry_type %></td></tr>
-  <tr><th></th><td><%= recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
-  <tr><th></th><td><%= link_to "show",recipe_path(recipe.id) %></td></tr>
-  <tr><th></th><td>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝</td></tr>
+
+<% if @search_recipes %>
+  <% recipes = @search_recipes %>
+<% else %>
+  <% recipes = @recipes %>
 <% end %>
-</table>
+
+
+<% recipes.each do |recipe| %>
+<table class="row-md-3">
+  <tr><th></th><td><%= image_tag recipe.picture.url if recipe.picture.url.present? %></td></tr>
+  <tr><th><%=  %></th><td><%= recipe.name %></td></tr>
+  <tr><th><%= :content %></th><td><%= recipe.content %></td></tr>
+  <tr><th><%= :curry_type %></th><td><%= recipe.curry_type %></td></tr>
+  <tr><td><%= recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
+  <tr><td><%= link_to "show",recipe_path(recipe.id) %></td></tr><br>
+  </table>
+<% end %>
+
 <%= link_to "new",new_recipe_path %>
