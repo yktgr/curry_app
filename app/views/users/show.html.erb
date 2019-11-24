@@ -1,23 +1,13 @@
-
+<h1>my page</h1>
 <table>
-  <tr>
-    <td><%= image_tag @user.picture.url if @user.picture.url.present? %></td>
-  </tr>
-  <tr>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <td><%= @user.email %></td>
-  </tr>
-  <tr>
-    <td><%= @user.admin %></td>
-  </tr>
-  <tr>
-    <td><%= link_to 'edit', edit_user_path(@user.id) %></td>
-  </tr>
+  <tr><td><%= image_tag @user.picture.url if @user.picture.url.present? %></td></tr>
+  <tr><td><%= @user.name %></td></tr>
+  <tr><td><%= @user.email %></td></tr>
+  <tr><td><%= link_to 'edit', edit_user_path(@user.id) %></td></tr>
 </table>
 
 <table>
+  <p>投稿</p>
 <% @recipes.each do |recipe| %>
   <tr><th></th><td><%= image_tag recipe.picture.url if recipe.picture.url.present? %></td></tr>
   <tr><th>レシピ</th><td><%= recipe.name %></td></tr>
@@ -25,7 +15,18 @@
   <tr><th>タイプ</th><td><%= recipe.curry_type %></td></tr>
   <tr><th></th><td><%= recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
   <tr><th></th><td><%= link_to "show",recipe_path(recipe.id) %></td></tr>
-
   <tr><th></th><td>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝</td></tr>
+<% end %>
+</table>
+
+<p>お気に入り</p>
+<table>
+  <% @recipe_likes.each do |like| %>
+  <tr><th></th><td><%= image_tag like.recipe.picture.url if like.recipe.picture.url.present? %></td></tr>
+  <tr><th>レシピ</th><td><%= like.recipe.name %></td></tr>
+  <tr><th>内容</th><td><%= like.recipe.content %></td></tr>
+  <tr><th>タイプ</th><td><%= like.recipe.curry_type %></td></tr>
+  <tr><th></th><td><%= like.recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
+  <tr><th></th><td><%= link_to "show",recipe_path(like.recipe.id) %></td></tr>
 <% end %>
 </table>

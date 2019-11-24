@@ -1,6 +1,4 @@
 <h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
-
 <table>
 <% @recipes.each do |recipe| %>
   <tr><th></th><td><%= image_tag recipe.picture.url if recipe.picture.url.present? %></td></tr>
@@ -9,9 +7,7 @@
   <tr><th>タイプ</th><td><%= recipe.curry_type %></td></tr>
   <tr><th></th><td><%= recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
   <tr><th></th><td><%= link_to "show",recipe_path(recipe.id) %></td></tr>
-
   <tr><th></th><td>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝</td></tr>
 <% end %>
 </table>
-
 <%= link_to "new",new_recipe_path %>

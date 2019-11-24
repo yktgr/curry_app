@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_034504) do
+ActiveRecord::Schema.define(version: 2019_11_22_070936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "recipe_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_comments_on_recipe_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "flows", force: :cascade do |t|
     t.text "content"
@@ -31,6 +41,15 @@ ActiveRecord::Schema.define(version: 2019_11_21_034504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_materials_on_recipe_id"
+  end
+
+  create_table "recipe_likes", force: :cascade do |t|
+    t.bigint "recipe_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_recipe_likes_on_recipe_id"
+    t.index ["user_id"], name: "index_recipe_likes_on_user_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -69,7 +88,11 @@ ActiveRecord::Schema.define(version: 2019_11_21_034504) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "recipes"
+  add_foreign_key "comments", "users"
   add_foreign_key "flows", "recipes"
   add_foreign_key "materials", "recipes"
+  add_foreign_key "recipe_likes", "recipes"
+  add_foreign_key "recipe_likes", "users"
   add_foreign_key "recipes", "users"
 end
