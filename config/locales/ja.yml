@@ -11,6 +11,7 @@ ja:
     content: "料理方法"
     picture: "料理画像"
     abbr_day_names:
+
     - 日
     - 月
     - 火

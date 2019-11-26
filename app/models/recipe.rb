@@ -1,5 +1,7 @@
 class Recipe < ApplicationRecord
   enum curry_type: {chicken: 0, beef: 1,pork: 2,vege: 3, other: 4}
+  belongs_to :user, optional: true
+  belongs_to :shop, optional: true
   has_many :recipe_likes, dependent: :destroy
   has_many :likes_users, through: :recipe_likes, source: :user
   has_many :comments, dependent: :destroy
@@ -8,6 +10,4 @@ class Recipe < ApplicationRecord
   has_many :flows, dependent: :destroy
   accepts_nested_attributes_for :flows, allow_destroy: true
   mount_uploader :picture, ImageUploader
-  belongs_to :user, optional: true
-
 end

@@ -7,13 +7,15 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @recipe.materials.build
-    @recipe.flows.build
+    5.times{ @recipe.materials.build }
+    5.times{ @recipe.flows.build }
   end
 
   def create
-    @recipe = current_user.recipes.build(recipe_params)
-    if @recipe.save
+      # @recipe = Shop.new(shop_params)
+    @recipe = Recipe.new(recipe_params)
+    # if  @shop.save
+      if  @recipe.save
       redirect_to recipes_path ,notice:'成功'
     else
       render 'new',notice:'失敗'
@@ -43,12 +45,18 @@ class RecipesController < ApplicationController
   end
 
   private
+  # def shop_params
+  #   params.require(:shop).permit(:name,
+  #       recipes_attributes: [:name,:picture,:content,:curry_type,:user_id,:shop_id,
+  #       materials_attributes: [:name,:amount,:recipe_id,:_destroy],
+  #       flows_attributes: [:content,:picture,:recipe_id,:_destroy]]
+  #     )
+  # end
+
   def recipe_params
-    params.require(:recipe).permit(:name,:picture,:content,:curry_type,:user_id,
+    params.require(:recipe).permit(:name,:picture,:content,:curry_type,:user_id,:shop_id,
       materials_attributes: [:name,:amount,:recipe_id,:_destroy],
       flows_attributes: [:content,:picture,:recipe_id,:_destroy]
     )
   end
-
-
 end

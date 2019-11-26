@@ -3,7 +3,7 @@
 <%= image_tag @recipe.picture.url  if @recipe.picture.url.present? %>
 <%= @recipe.name %>
 <table>
-  <tr><th>素材</th><th>量</th></tr>
+  <tr><th>素材</th><th></th></tr>
   <% @recipe.materials.each do |material|  %>
   <tr><td><%= material.name %></td>
   <td><%= material.amount %></td></tr>
