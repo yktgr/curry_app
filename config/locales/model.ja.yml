@@ -7,6 +7,7 @@ ja:
       commnent: "コメント"
       recipe_like: "お気に入りレシピ"
       flow: "調理方法"
+      shop: "店"
 
     attributes:
       recipe:
@@ -23,11 +24,10 @@ ja:
       material:
         name: "材料"
         amount: "分量"
-      recipe/materials:
-        name: "材料"
-        amount: "分量"
-      commnent:
+      comment:
         content:　"コメント"
       flow:
         content: "料理方法"
         picture: "料理画像"
+      shop:
+        name: 店名

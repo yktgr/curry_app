@@ -16,6 +16,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
 gem 'nested_form_fields'
+gem 'nested_form'
 gem 'devise'
 gem 'enum_help'
 gem 'ransack'

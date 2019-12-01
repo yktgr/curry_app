@@ -1,3 +1,110 @@
-// Place all the styles related to the recipes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.recipe_box{
+  width:200px;
+  height: 300px;
+  border: solid 1px #d2c8be;
+  background-color: white;
+  margin-right: 10px;
+  margin-bottom: 50px;
+  float: left;
+  display: static;
+}
+
+.recipe_info{
+  float: left;
+  height: 100px;
+  line-height: 25px;
+  margin-left: 5px;
+}
+
+.picture{
+  position: relative;
+  top:4px;
+  left: 4px;
+  width:190px;
+  height: 190px;
+  background-color: grey;
+  border: none;
+}
+
+.material{
+  position: relative;
+  float: right;
+}
+
+.flow{
+  position: relative;
+}
+
+.select{
+  float: left;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.comment{
+  width:500px;
+}
+
+
+// 投稿画面
+
+.submit{
+  width:200px;
+  height: 300px;
+  border: solid 1px #d2c8be;
+  background-color: white;
+  margin-right: 10px;
+  margin-bottom: 50px;
+  float: left;
+  display: static;
+}
+
+.blank{
+  position: relative;
+  top:4px;
+  left: 4px;
+  width:190px;
+  height: 190px;
+  border: solid 1px #d2c8be;
+  text-align: center;
+  font-size: 10px;
+}
+
+.info{
+  position: relative;
+  width:200px;
+  height: 102px;
+}
+
+.info li{
+  margin-top: 10px;
+}
+
+.flow_content{
+  width:100%;
+  height: 300px;
+  background-color: white;
+}
+
+
+.flow_content{
+  width:200px;
+  height: 300px;
+  border: solid 1px #d2c8be;
+
+  margin-right: 10px;
+  margin-bottom: 50px;
+  float: left;
+}
+
+
+#button{
+  width: 100px;
+  margin-top: 13px;
+  margin-left: 50px;
+  background: #f9f3eb;
+  border: solid 1px #d2c8be;
+  border-radius: 15px;
+  text-align: center;
+  display: block;
+}

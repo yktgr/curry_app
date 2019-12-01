@@ -1,4 +1,46 @@
 <h1>edit</h1>
-<%= render 'form' %>
-      <%= link_to "詳細",recipe_path(@recipe.id) %>
-      <%= link_to "戻る", :back %>
+<%=  nested_form_for @recipe ,local:true do |r| %>
+  <div>
+    <div class="submit">
+        <div  class="blank">
+        <li><%= r.label t('recipe.picture') %></li>
+        <li><%= r.file_field :picture %></li>
+        </div>
+<div class="info">
+      <li><%= r.label t('recipe.name') %><%= r.text_field :name%></li>
+      <li><%= r.hidden_field:user_id, value:current_user.id %></li>
+      <li><%= r.label t('recipe.curry_type') %><%= r.select :curry_type, Recipe.curry_types.keys %></li>
+</div>
+
+<div class="">
+  <li><%= r.label :content %><%= r.text_area :content %></li>
+</div>
+  </div>
+
+  <div class="">
+    <ul>
+      <li><%= r.label t('material.name') %>/<%= r.label t('material.amount') %></li>
+      <%= r.nested_fields_for :materials do |material| %>
+        <li><p><%= material.text_field :name %><%= material.text_field :amount %>
+          <%= material.remove_nested_fields_link 'Delete', role: 'button' %></p>
+        </li>
+      <% end %>
+      <li><%= r.add_nested_fields_link :materials, 'Add', role: 'button'%></li>
+    </ul>
+  </div>
+<div class="flow">
+  <%= r.nested_fields_for :flows do |flow| %>
+  <div class="flow_content">
+  <li><%= flow.label t('flow.picture') %><%= flow.file_field :picture %></li>
+  <li><%= flow.label t('flow.content') %><%= flow.text_area :content %></li>
+  <li><%= flow.remove_nested_fields_link 'Delete', role: 'button' %></li>
+  <% end %>
+  </div>
+  <li>  <%= r.add_nested_fields_link :flows, 'Add', role: 'button'%></li>
+
+</div>
+  <%= r.submit %>
+<% end %>
+
+
+<%= link_to "戻る",recipe_path(@recipe.id) %>

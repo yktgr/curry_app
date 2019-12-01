@@ -2,20 +2,26 @@ class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
   # before_action :authenticate_user!, only: [:new, :create]
   def index
+    @shops = Shop.all
     @recipes = Recipe.all
+    @users = User.all
+  if params[:q].present?
+    @recipes = @search_recipes
+  else
+    @recipes = Recipe.all
+  end
   end
 
   def new
-    @recipe = Recipe.new
-    5.times{ @recipe.materials.build }
-    5.times{ @recipe.flows.build }
+    @shop = Shop.new
+    recipe = @shop.recipes.build
+    5.times{ recipe.materials.build }
+    5.times{ recipe.flows.build }
   end
 
   def create
-      # @recipe = Shop.new(shop_params)
-    @recipe = Recipe.new(recipe_params)
-    # if  @shop.save
-      if  @recipe.save
+      shop = Shop.new(shop_params)
+    if  shop.save
       redirect_to recipes_path ,notice:'成功'
     else
       render 'new',notice:'失敗'
@@ -31,7 +37,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    if @recipe.update(recipe_params)
+      if @recipe.update(recipe_params)
       redirect_to recipes_path,notice:"編集しました"
     else
       render 'edit'
@@ -45,18 +51,18 @@ class RecipesController < ApplicationController
   end
 
   private
-  # def shop_params
-  #   params.require(:shop).permit(:name,
-  #       recipes_attributes: [:name,:picture,:content,:curry_type,:user_id,:shop_id,
-  #       materials_attributes: [:name,:amount,:recipe_id,:_destroy],
-  #       flows_attributes: [:content,:picture,:recipe_id,:_destroy]]
-  #     )
-  # end
+  def shop_params
+    params.require(:shop).permit(:id,:name,
+        recipes_attributes: [:id,:name,:picture,:content,:curry_type,:user_id,:shop_id, :remove_picture,
+        materials_attributes: [:id,:name,:amount,:recipe_id,:_destroy],
+        flows_attributes: [:id,:content,:picture,:recipe_id,:_destroy, :remove_picture]]
+      )
+  end
 
   def recipe_params
-    params.require(:recipe).permit(:name,:picture,:content,:curry_type,:user_id,:shop_id,
-      materials_attributes: [:name,:amount,:recipe_id,:_destroy],
-      flows_attributes: [:content,:picture,:recipe_id,:_destroy]
+    params.require(:recipe).permit(:id,:name,:picture,:content,:curry_type,:user_id,:shop_id, :remove_picture,
+      materials_attributes: [:id,:name,:amount,:recipe_id,:_destroy],
+      flows_attributes: [:id,:content,:picture,:recipe_id,:_destroy, :remove_picture]
     )
   end
 end
