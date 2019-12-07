@@ -1,21 +1,16 @@
-<h1>Recipes#index</h1>
-
-<% if @search_recipes %>
-  <% recipes = @search_recipes %>
-<% else %>
-  <% recipes = @recipes %>
+<h1><%= t('recipe.index')%></h1>
+<% @recipes.each do |recipe| %>
+  <div class="recipe_box">
+  <div class="picture">
+    <li><%= image_tag recipe.picture.url if recipe.picture.url.present? %></li>
+  </div>
+  <div class="recipe_info">
+    <li><%= Shop.find(recipe.shop_id).name %>風</li>
+    <li>：<%= recipe.name %></li>
+    <li><%= t('recipe.curry_type') %><%= recipe.curry_type %></li>
+    <li>post by <%= User.find(recipe.user_id).name %></li>
+    <li><%= t('view.update') %><%= recipe.updated_at.strftime('%Y/%m/%d') %></li>
+    <li id="button"><%= link_to t('recipe.show'),recipe_path(recipe.id), role: 'button'%></li>
+  </div>
+  </div>
 <% end %>
-
-
-<% recipes.each do |recipe| %>
-<table class="row-md-3">
-  <tr><th></th><td><%= image_tag recipe.picture.url if recipe.picture.url.present? %></td></tr>
-  <tr><th><%=  %></th><td><%= recipe.name %></td></tr>
-  <tr><th><%= :content %></th><td><%= recipe.content %></td></tr>
-  <tr><th><%= :curry_type %></th><td><%= recipe.curry_type %></td></tr>
-  <tr><td><%= recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
-  <tr><td><%= link_to "show",recipe_path(recipe.id) %></td></tr><br>
-  </table>
-<% end %>
-
-<%= link_to "new",new_recipe_path %>

@@ -1,37 +1,48 @@
 
-<% @recipe.errors.full_messages.each do |msg| %>
-  <div><%= msg %></div>
-<% end %>
-    <%= form_for @recipe do |f| %>
-    <table>
-      <tr><th><%= f.label :name %></th><td><%= f.text_field :name %></td></tr>
-      <tr><th><%= f.label :content %></th><td><%= f.text_area :content %></td></tr>
-      <tr><th><%= f.label :curry_type %></th><td><%= f.select :curry_type, Recipe.curry_types.keys %></td></tr>
-      <tr><th><%= f.label :picture %></th><td><%= f.file_field :picture %></td></tr>
-    </table>
+<%= form_for @shop, url: choose_new_or_edit, local: true do |f| %>
+  <div class="recipe_box">
+    <li><%= f.label t('shop.name') %><%= f.text_field :name %></li>
+      <%= f.fields_for :recipes ,local:true do |r| %>
+        <% if @recipe.picture.url.present? %>
+          <li><%= image_tag @recipe.picture.url %></li>
+          <li><%= r.label 'delete' %><%= r.check_box :remove_picture %></li>
+        <% else %>
+          <li><%= r.label t('recipe.picture') %></li>
+          <li><%= r.file_field :picture %></li>
+        <% end %>
 
-      <table>
-       <tbody>
-           <%= f.nested_fields_for :materials, wrapper_tag: :tr do |material| %>
-              <th><%= f.label :material %></th>
-              <th><%= f.label :material %></th>
-              <td><%= material.text_field :name %></td><td><%= material.text_field :amount %></td>
-              <td><%= material.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %></td>
+  <div class="recipe_info">
+        <li><%= r.label t('recipe.name') %><%= r.text_field :name,:size=>"50x50"%></li>
+        <li><%= r.label t('recipe.content') %><%= r.text_area :content %></li>
+        <li><%= r.label t('recipe.curry_type') %><%= r.select :curry_type, curry_type:(
+            Recipe.curry_types_i18n.keys.map{|k| [Recipe.curry_types_i18n[k], k]} )%></li>
+        <%= r.hidden_field:user_id, value: current_user.id %>
+  </div>
+</div>
+
+  <li><%= r.label t('material.name') %>/<%= r.label t('material.amount') %></li>
+            <%= r.nested_fields_for :materials do |material| %>
+              <li id="button"><%= material.text_field :name %><%= material.text_field :amount %>
+              <%= material.remove_nested_fields_link 'Delete', role: 'button' %></li>
             <% end %>
-        <tr> <td><%= f.add_nested_fields_link :materials, 'Add', class: 'btn btn-primary', role: 'button'%></td></tr>
-       </tbody>
-     </table>
+              <li id="button"><%= r.add_nested_fields_link :materials, 'Add', role: 'button'%></li>
 
-     <table>
-      <tbody>
-        <tr><th>画像</th><th>内容</th></tr>
-          <%= f.nested_fields_for :flows, wrapper_tag: :tr do |flow| %>
-              <td><%= flow.file_field :picture %></td><br>
-              <td><%= flow.text_area :content %></td>
-              <td><%= flow.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %></td>
-          <% end %>
-      <td><%= f.add_nested_fields_link :flows, 'Add', class: 'btn btn-primary', role: 'button'%></td>
-    </tbody>
-  </table>
-      <%= f.submit %>
+<div class="f-container">
+<ol>
+<div class="new_flow">
+<%= r.nested_fields_for :flows do |flow| %>
+<tabele>
+  <tr><%= flow.label t('flow.picture') %><%= flow.file_field :picture %></tr>
+  <tr><%= flow.label t('flow.content') %><%= flow.text_area :content %></tr>
+  <tr><%= flow.remove_nested_fields_link 'Delete', role: 'button' %></tr>
+  </<table><br>
+<% end %>
+</div>
+</ol>
+
+<p>  <%= r.add_nested_fields_link :flows, 'Add', role: 'button'%><p>
+  </div>
+<% end %>
+<div class="submit">
+<li><%= f.submit %></li></div>
 <% end %>

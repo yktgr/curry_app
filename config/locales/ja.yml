@@ -1,4 +1,4 @@
-
+---
 ja:
   activerecord:
     errors:
@@ -7,9 +7,54 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  header:
+    top:    "トップ"
+    mypage: "マイページ"
+    login:  "ログイン"
+    logout:  "ログアウト"
+    signup:  "新規登録"
+    search:  "検索"
+  recipe:
+    index: "レシピ一覧"
+    name: "レシピ"
+    content: "紹介"
+    picture: "画像"
+    show: "詳細"
+    new: "レシピの投稿"
+    curry_type: "カレータイプ"
+  enums:
+    recipe:
+      curry_type:
+        chicken: チキン
+        beef: ビーフ
+        pork: ポーク
+        fish: フィッシュ
+        vege: 野菜
+        other: 他
+
+  user:
+    name: "名前"
+    picture: "画像"
+    email: "メールアドレス"
+    password: "パスワード"
+    password_confirmation: "確認用パスワード"
+  material:
+    name: "材料"
+    amount: "分量"
+  comment:
+    content:　"コメント"
   flow:
     content: "料理方法"
     picture: "料理画像"
+  shop:
+    name: "店名"
+  view:
+    update: "更新日"
+
+
+
+
+  date:
     abbr_day_names:
     - 日
     - 月
@@ -207,11 +252,3 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  enums:
-    recipe:
-      recipe_type:
-        chicken: "チキン"
-        beef: "ビーフ"
-        pork: "ポーク"
-        vege: "ベジ"
-        other: "他"

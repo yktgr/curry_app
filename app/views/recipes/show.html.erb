@@ -1,34 +1,47 @@
 <h1>Recipes#show</h1>
-
-<%= image_tag @recipe.picture.url  if @recipe.picture.url.present? %>
-<%= @recipe.name %>
-<table>
-  <tr><th>素材</th><th>量</th></tr>
-  <% @recipe.materials.each do |material|  %>
-  <tr><td><%= material.name %></td>
-  <td><%= material.amount %></td></tr>
-  <% end %>
-</table>
-<table>
-  <% @recipe.flows.each_with_index do |flow,i| %>
-  <tr><th><%= i + 1 %>.</th></tr>
-  <tr><th></th><td><%= image_tag flow.picture.url if flow.picture.url.present?  %></td></tr>
-  <tr><th></th><td><%= flow.content %></td></tr>
-  <% end %>
-</table>
-
-<% unless @recipe.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', recipe_like_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'お気に入りする',  recipe_likes_path(recipe_id: @recipe.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
-
-<div id ="comments_area">
-<%= render partial: 'comments/index', locals: {comments: @comments, recipe: @recipe} %>
-<%= render partial: 'comments/form', locals: {comment: @comment, recipe: @recipe} %>
+<div class="recipe_index">
+<li><%= @recipe.name %></li>
+<div class="picture">
+<li><%= image_tag @recipe.picture.url if @recipe.picture.url.present? %></li>
 </div>
-<%= link_to "edit",edit_recipe_path(@recipe.id) %>
-<%= link_to "delete",recipe_path(@recipe.id),method: :delete %>
-<%= link_to '戻る', :back %>
+<div class="recipe_info">
+<li><%= :content %><%= @recipe.content %></li>
+<li><%= :curry_type %><%= @recipe.curry_type %></li>
+<li><%= @recipe.updated_at.strftime('%Y/%m/%d') %></li>
+</div>
+
+<div class="favorite">
+  <% unless @recipe.user_id == current_user.id %>
+    <% if @favorite.present? %>
+      <%= link_to 'お気に入り解除する', recipe_like_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'お気に入りする',  recipe_likes_path(recipe_id: @recipe.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="flow">
+  <% @recipe.flows.each_with_index do |flow,i| %>
+    <li><%= i + 1 %>.</li>
+    <li><%= image_tag flow.picture.url if flow.picture.url.present?  %></li>
+    <li><%= flow.content %></li>
+  <% end %>
+</div>
+</div>
+
+<div class="material">
+  <% @recipe.materials.each do |material|  %>
+    <li><%= material.name %></li>：
+    <li><%= material.amount %></li>
+  <% end %>
+</div>
+
+<div id ="comment">
+  <%= render partial: 'comments/index', locals: {comments: @comments, recipe: @recipe} %>
+  <%= render partial: 'comments/form', locals: {comment: @comment, recipe: @recipe} %>
+</div>
+<div class="select">
+  <li><%= link_to "edit",edit_recipe_path(@recipe.id) %>
+    <%= link_to "delete",recipe_path(@recipe.id),method: :delete %>
+    <%= link_to '戻る', recipes_path %></li>
+</div>

@@ -14,3 +14,63 @@
  *= require bootstrap/dist/css/bootstrap.min
  *= require_self
  */
+html{
+
+
+}
+/* , a:hover */
+a, a:visited, a:focus{
+    text-decoration: none;
+    color:black;
+}
+
+ body{
+   /* background-color: #ffff; */
+ }
+
+
+ header{
+   margin-top:0px;
+   width:100%;
+   height: 60px;
+   /* background-color: #ef6019e0; */
+   font:white;
+   border-bottom: solid 1px #d2c8be;
+ }
+
+
+ nav li{
+   color: black;
+   color: black;
+   float: left;
+   line-height: 30px;
+   text-align: center;
+   margin: 15px 0 10px 10px;
+ }
+
+ li {
+     list-style: none;
+  }
+
+  ol li{
+    list-style: decimal;
+  }
+
+
+
+.search{
+   float: right;
+   margin-right: 50px;
+ }
+.search li{
+  float: left;
+}
+
+ #new_button{
+   width: 100px;
+   background: #f75a0c;
+   border: solid 1px #d2c8be;
+   border-radius: 15px;
+   text-align: center;
+   display: block;
+ }

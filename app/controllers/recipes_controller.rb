@@ -1,19 +1,29 @@
 class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
+  before_action:set_shop,only:[:edit,:update,:show,:destroy]
   # before_action :authenticate_user!, only: [:new, :create]
   def index
-    @recipes = Recipe.all
+    if @search_recipes.present?
+    @recipes =  @search_recipes.updated
+  elsif @search_recipes.blank?
+    redirect_to recipes_path, notice: '該当なし'
+  else
+    @recipes =  Recipe.all.updated
+  end
+
   end
 
   def new
     @recipe = Recipe.new
-    @recipe.materials.build
-    @recipe.flows.build
+    @shop = Shop.new
+    recipe = @shop.recipes.build
+    5.times{ recipe.materials.build}
+    5.times{ recipe.flows.build }
   end
 
   def create
-    @recipe = current_user.recipes.build(recipe_params)
-    if @recipe.save
+      shop = Shop.new(shop_params)
+    if  shop.save
       redirect_to recipes_path ,notice:'成功'
     else
       render 'new',notice:'失敗'
@@ -26,10 +36,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    # @shop = Shop.find(@recipe.shop_id)
   end
 
   def update
-    if @recipe.update(recipe_params)
+    if @shop.update(shop_params)
       redirect_to recipes_path,notice:"編集しました"
     else
       render 'edit'
@@ -43,11 +54,12 @@ class RecipesController < ApplicationController
   end
 
   private
-  def recipe_params
-    params.require(:recipe).permit(:name,:picture,:content,:curry_type,:user_id,
-      materials_attributes: [:name,:amount,:recipe_id,:_destroy],
-      flows_attributes: [:content,:picture,:recipe_id,:_destroy]
-    )
+  def shop_params
+    params.require(:shop).permit(:id,:name,:recipe_id,
+        recipes_attributes: [:id,:name,:picture,:content,:curry_type,:user_id,:shop_id, :remove_picture],
+        materials_attributes: [:id,:name,:amount,:recipe_id,:_destroy],
+        flows_attributes: [:id,:content,:picture,:recipe_id,:_destroy, :remove_picture]
+      )
   end
 
 
