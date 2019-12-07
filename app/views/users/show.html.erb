@@ -1,32 +1,38 @@
-<h1>my page</h1>
-<table>
-  <tr><td><%= image_tag @user.picture.url if @user.picture.url.present? %></td></tr>
-  <tr><td><%= @user.name %></td></tr>
-  <tr><td><%= @user.email %></td></tr>
-  <tr><td><%= link_to 'edit', edit_user_path(@user.id) %></td></tr>
-</table>
+<h1><%= t('header.mypage') %></h1>
+<div class="f-container">
+  <div class="">
+    <%= image_tag @user.picture.url if @user.picture.url.present? %>
+  </div>
+  <li><%= @user.name %></li>
+  <li><%= link_to 'edit', edit_user_path(@user.id) %></li>
+</div>
 
-<table>
-  <p>投稿</p>
+<li>投稿</li>
 <% @recipes.each do |recipe| %>
-  <tr><th></th><td><%= image_tag recipe.picture.url if recipe.picture.url.present? %></td></tr>
-  <tr><th>レシピ</th><td><%= recipe.name %></td></tr>
-  <tr><th>内容</th><td><%= recipe.content %></td></tr>
-  <tr><th>タイプ</th><td><%= recipe.curry_type %></td></tr>
-  <tr><th></th><td><%= recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
-  <tr><th></th><td><%= link_to "show",recipe_path(recipe.id) %></td></tr>
-  <tr><th></th><td>＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝</td></tr>
+  <div class="recipe_box">
+  <div class="picture">
+    <li><%= image_tag recipe.picture.url if recipe.picture.url.present? %></li>
+  </div>
+  <div class="recipe_info">
+    <li><%= Shop.find(recipe.shop_id).name %>風</li>
+    <li>：<%= recipe.name %></li>
+    <li><%= t('recipe.curry_type') %><%= recipe.curry_type %></li>
+    <li><%= t('view.update') %><%= recipe.updated_at.strftime('%Y/%m/%d') %></li>
+    <li id="button"><%= link_to t('recipe.show'),recipe_path(recipe.id), role: 'button'%></li>
+  </div>
+  </div>
 <% end %>
-</table>
-
-<p>お気に入り</p>
-<table>
+<div class="">
+<li>お気に入り</li>
   <% @recipe_likes.each do |like| %>
-  <tr><th></th><td><%= image_tag like.recipe.picture.url if like.recipe.picture.url.present? %></td></tr>
-  <tr><th>レシピ</th><td><%= like.recipe.name %></td></tr>
-  <tr><th>内容</th><td><%= like.recipe.content %></td></tr>
-  <tr><th>タイプ</th><td><%= like.recipe.curry_type %></td></tr>
-  <tr><th></th><td><%= like.recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
-  <tr><th></th><td><%= link_to "show",recipe_path(like.recipe.id) %></td></tr>
+  <div class="recipe_box">
+    <div class="picture">
+  <%= image_tag like.recipe.picture.url if like.recipe.picture.url.present? %>
+  </div>
+  <li><%= like.recipe.name %></li>
+<li>  <%= like.recipe.content %></li>
+  <li><%= like.recipe.curry_type %></li>
+  <li><%= like.recipe.updated_at.strftime('%Y/%m/%d') %></li>
+  <<li><%= link_to "show",recipe_path(like.recipe.id) %></li>
 <% end %>
-</table>
+</div>

@@ -22,7 +22,15 @@ ja:
     show: "詳細"
     new: "レシピの投稿"
     curry_type: "カレータイプ"
-
+  enums:
+    recipe:
+      curry_type:
+        chicken: チキン
+        beef: ビーフ
+        pork: ポーク
+        fish: フィッシュ
+        vege: 野菜
+        other: 他
 
   user:
     name: "名前"
@@ -39,8 +47,9 @@ ja:
     content: "料理方法"
     picture: "料理画像"
   shop:
-    name: 店名
-
+    name: "店名"
+  view:
+    update: "更新日"
 
 
 

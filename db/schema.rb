@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_075333) do
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "recipe_id"
-    t.text "content"
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_comments_on_recipe_id"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2019_11_24_075333) do
   end
 
   create_table "flows", force: :cascade do |t|
-    t.text "content"
-    t.string "picture"
+    t.text "content", null: false
+    t.string "picture", null: false
     t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2019_11_24_075333) do
   end
 
   create_table "materials", force: :cascade do |t|
-    t.string "name"
-    t.string "amount"
+    t.string "name", null: false
+    t.string "amount", null: false
     t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 2019_11_24_075333) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "picture"
-    t.text "content"
-    t.integer "curry_type"
+    t.text "content", null: false
+    t.integer "curry_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_075333) do
   end
 
   create_table "shops", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

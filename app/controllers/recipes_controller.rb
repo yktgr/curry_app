@@ -1,21 +1,23 @@
 class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
+  before_action:set_shop,only:[:edit,:update,:show,:destroy]
   # before_action :authenticate_user!, only: [:new, :create]
   def index
-    @shops = Shop.all
-    @recipes = Recipe.all
-    @users = User.all
-  if params[:q].present?
-    @recipes = @search_recipes
+    if @search_recipes.present?
+    @recipes =  @search_recipes.updated
+  elsif @search_recipes.blank?
+    redirect_to recipes_path, notice: '該当なし'
   else
-    @recipes = Recipe.all
+    @recipes =  Recipe.all.updated
   end
+
   end
 
   def new
+    @recipe = Recipe.new
     @shop = Shop.new
     recipe = @shop.recipes.build
-    5.times{ recipe.materials.build }
+    5.times{ recipe.materials.build}
     5.times{ recipe.flows.build }
   end
 
@@ -34,10 +36,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    # @shop = Shop.find(@recipe.shop_id)
   end
 
   def update
-      if @recipe.update(recipe_params)
+    if @shop.update(shop_params)
       redirect_to recipes_path,notice:"編集しました"
     else
       render 'edit'
@@ -52,17 +55,12 @@ class RecipesController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop).permit(:id,:name,
-        recipes_attributes: [:id,:name,:picture,:content,:curry_type,:user_id,:shop_id, :remove_picture,
+    params.require(:shop).permit(:id,:name,:recipe_id,
+        recipes_attributes: [:id,:name,:picture,:content,:curry_type,:user_id,:shop_id, :remove_picture],
         materials_attributes: [:id,:name,:amount,:recipe_id,:_destroy],
-        flows_attributes: [:id,:content,:picture,:recipe_id,:_destroy, :remove_picture]]
+        flows_attributes: [:id,:content,:picture,:recipe_id,:_destroy, :remove_picture]
       )
   end
 
-  def recipe_params
-    params.require(:recipe).permit(:id,:name,:picture,:content,:curry_type,:user_id,:shop_id, :remove_picture,
-      materials_attributes: [:id,:name,:amount,:recipe_id,:_destroy],
-      flows_attributes: [:id,:content,:picture,:recipe_id,:_destroy, :remove_picture]
-    )
-  end
+
 end

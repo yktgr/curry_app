@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  validates :name, presence: true ,length: { in:1..255 }
+  validates :email, presence: true ,length: { in:1..255 }
+  validates :picture, length: { maximum:255 }
   has_many :recipes, dependent: :destroy, inverse_of: :user
   mount_uploader :picture, ImageUploader
   devise :database_authenticatable, :registerable,

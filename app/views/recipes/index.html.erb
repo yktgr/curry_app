@@ -5,11 +5,11 @@
     <li><%= image_tag recipe.picture.url if recipe.picture.url.present? %></li>
   </div>
   <div class="recipe_info">
-    <li><%= t('recipe.name') %><%= recipe.name %></li>
-    <li>店<%= Shop.find(recipe.shop_id).name %></li>
+    <li><%= Shop.find(recipe.shop_id).name %>風</li>
+    <li>：<%= recipe.name %></li>
     <li><%= t('recipe.curry_type') %><%= recipe.curry_type %></li>
-    <li>投稿者<%= User.find(recipe.user_id).name %></li>
-    <li><%= recipe.updated_at.strftime('%Y/%m/%d') %></li>
+    <li>post by <%= User.find(recipe.user_id).name %></li>
+    <li><%= t('view.update') %><%= recipe.updated_at.strftime('%Y/%m/%d') %></li>
     <li id="button"><%= link_to t('recipe.show'),recipe_path(recipe.id), role: 'button'%></li>
   </div>
   </div>

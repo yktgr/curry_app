@@ -40,7 +40,7 @@ a, a:visited, a:focus{
 
 
  nav li{
-    color: black;
+   color: black;
    color: black;
    float: left;
    line-height: 30px;
@@ -50,7 +50,13 @@ a, a:visited, a:focus{
 
  li {
      list-style: none;
- }
+  }
+
+  ol li{
+    list-style: decimal;
+  }
+
+
 
 .search{
    float: right;
