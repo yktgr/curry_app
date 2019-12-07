@@ -22,8 +22,8 @@ User.create!(name: "test",
              password_confirmation: "password",
              )
 
- User.create!(name: "user",
-              email: "user@user.com",
-              password: "password",
-              password_confirmation: "password",
-              )
+User.create!(name: "test2",
+            email: "test2@test.com",
+            password: "password",
+            password_confirmation: "password",
+            )

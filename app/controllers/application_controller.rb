@@ -1,6 +1,16 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :authenticate_user!
   before_action :set_search
+
+
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
+  def after_sign_out_path_for(resource)
+    new_user_session_url
+  end
 
   def set_search
    @search = Recipe.ransack(params[:q]||{curry_type_in: Recipe.curry_types.values})
@@ -15,13 +25,7 @@ class ApplicationController < ActionController::Base
     @recipe = Recipe.find(params[:id])
   end
 
-  def after_sign_in_path_for(resource)
-    recipes_path
-  end
 
-  def after_sign_out_path_for(resource)
-    new_user_session_url
-  end
 
   protected
   def configure_permitted_parameters
