@@ -1,18 +1,12 @@
 class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
-  # before_action:set_shop,only:[:edit,:update,:show,:destroy]
-  # before_action :authenticate_user!, only: [:new, :create]
-
+  before_action :authenticate_user!, only: [:new, :create]
   def index
-    if @search_recipes == nil
-      @recipes =  Recipe.all.updated
-      redirect_to recipes_path, notice: '該当なし'
-    else
-    @recipes = @search_recipes.updated
-    end
     @recipes =  Recipe.all.updated
-end
-
+    @q = Recipe.ransack(params[:q])
+    @result =  @q.result(distinct: true)
+    @recipes =  @result if @result.present?
+  end
 
   def new
     @recipe = Recipe.new
@@ -21,11 +15,8 @@ end
   end
 
   def create
-      shop = Shop.find(params[:shop_id])
-      shop.recipes.build(recipe_params) if params[:shop_id].present?
-      @recipe = Recipe.new(recipe_params)
-    if  @recipe.save
-
+    @recipe = Recipe.new(recipe_params)
+    if @recipe.save
       redirect_to recipes_path ,notice:'成功'
     else
       render 'new',notice:'失敗'
@@ -38,7 +29,6 @@ end
   end
 
   def edit
-    # @shop = Shop.find(@recipe.shop_id)
   end
 
   def update
@@ -62,6 +52,4 @@ end
         flows_attributes: [:id,:content,:picture,:recipe_id,:_destroy, :remove_picture]
       )
   end
-
-
 end

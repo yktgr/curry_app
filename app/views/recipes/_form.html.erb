@@ -12,13 +12,9 @@
         <%= f.hidden_field:user_id, value: current_user.id %>
         <li><%= f.label t('recipe.name') %><%= f.text_field :name%></li>
         <li><%= f.label t('recipe.curry_type') %><%= f.select :curry_type,
-            Recipe.curry_types_i18n.keys.map{|k| [Recipe.curry_types_i18n[k], k]} , include_blank: '選択して下さい' %></li>
+            Recipe.curry_types_i18n.keys.map{|k| [Recipe.curry_types_i18n[k], k]} , include_blank: false, prompt: true %></li>
         <li><%= f.label t('recipe.content') %><%= f.text_area :content %></li>
-        <%= select_tag :shop_id, options_from_collection_for_select(Shop.all,:id,:name), class: "search_box" , include_blank: '選択して下さい'%></li>
-
-
-
-
+        <li><%= f.label t('shop.name') %><%= f.collection_select :shop_id, Shop.all, :id, :name, include_blank: false, prompt:true %></li>
   <div>
 
 <%= f.label t('material.name') %><%= f.label t('material.amount') %>
@@ -41,7 +37,7 @@
 </div>
 </ol>
 
-<p>  <%= f.add_nested_fields_link :flows, t('view.add'), role: 'button'%><p>
+<p><%= f.add_nested_fields_link :flows, t('view.add'), role: 'button'%><p>
   </div>
 
 <div class="submit">

@@ -17,7 +17,7 @@
     <% if @favorite.present? %>
       <%= link_to t('view.dislike'), recipe_like_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
     <% else %>
-      <%= link_to ('view.dislike'),  recipe_likes_path(recipe_id: @recipe.id), method: :post, class: 'btn btn-primary' %>
+      <%= link_to t('view.dislike'),  recipe_likes_path(recipe_id: @recipe.id), method: :post, class: 'btn btn-primary' %>
     <% end %>
   <% end %>
 </div>

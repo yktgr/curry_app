@@ -1,17 +1,17 @@
 class ShopsController < ApplicationController
   before_action:set_shop,only:[:edit,:update,:show,:destroy]
-
-def index
-  @q = Shop.ransack(params[:q])
-  @shops = @q.result(distinct: true)
-end
+  before_action :authenticate_user!
+  def index
+    @q = Shop.ransack(params[:q])
+    @shops = @q.result(distinct: true)
+  end
 
   def new
     @shop = Shop.new
   end
 
   def create
-      shop = Shop.new(shop_params)
+    shop = Shop.new(shop_params)
     if  shop.save
       redirect_to shops_path ,notice:'ショップを登録しました'
     else
@@ -29,7 +29,6 @@ end
   end
 
   def edit
-    # @shop = Shop.find(@recipe.shop_id)
   end
 
   def update
