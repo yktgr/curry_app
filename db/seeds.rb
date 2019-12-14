@@ -27,3 +27,10 @@ User.create!(name: "test",
               password: "password",
               password_confirmation: "password",
               )
+
+Shop.create!(name: "A",
+             address: "千葉県"
+             )
+ Shop.create!(name: "B",
+              address: "東京都"
+              )

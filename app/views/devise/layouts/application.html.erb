@@ -13,14 +13,9 @@
         <li><%= link_to t('header.top'), recipes_path %></li><li>|</li>
         <li><%= link_to t('header.logout'), destroy_user_session_path, method: :delete %></li><li>|</li>
         <li><%= link_to t('header.mypage'),user_path(current_user.id) %></li><li>|</li>
-        <li id="new_button"><%= link_to t('recipe.new'),new_recipe_path %></li>
-        <div class="search">
-            <%= search_form_for @search, url: recipes_path do |f| %>
-            <li><%= f.label t('recipe.curry_type') %>
-            <li><%= f.select :curry_type_eq ,Recipe.curry_types.map{|k,v| [Recipe.curry_types_i18n[k], v]}, include_blank: true%></li>
-            <li><%= f.submit t('header.search') %></li>
-          <% end %>
-        </div>
+        <li><%= link_to t('shop.index'),shops_path %></li><li>|</li>
+        <li><%= link_to t('shop.new'),new_shop_path %></li><li>|</li>
+        <li><%= link_to t('recipe.new'),new_recipe_path %></li>
 </nav>
 </header>
       <% else %>
@@ -32,8 +27,6 @@
     </header>
       <% end %>
 <body>
-
-
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
     <% end %>

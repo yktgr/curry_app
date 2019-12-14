@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_search
+  before_action :set_search_recipe
 
-  def set_search
-   @search = Recipe.ransack(params[:q]||{curry_type_in: Recipe.curry_types.values})
-   @search_recipes = @search.result(distinct: true)
+
+  def set_search_recipe
+    @search = Recipe.ransack(params[:q]||{curry_type_in: Recipe.curry_types.values})
+    @search_recipes =  @search.result(distinct: true)
  end
 
   def set_shop
