@@ -10,6 +10,7 @@
   <header class="header">
       <% if user_signed_in? %>
       <nav>
+        <li id="logo">Yellow Spice Orchestra</li><li></li>
         <li><%= link_to t('header.top'), recipes_path %></li><li>|</li>
         <li><%= link_to t('header.logout'), destroy_user_session_path, method: :delete %></li><li>|</li>
         <li><%= link_to t('header.mypage'),user_path(current_user.id) %></li><li>|</li>

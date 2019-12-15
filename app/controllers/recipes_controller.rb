@@ -17,9 +17,9 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      redirect_to recipes_path ,notice:'成功'
+      redirect_to recipes_path ,flash: {notice:'レシピを投稿しました'}
     else
-      render 'new',notice:'失敗'
+      render 'new', flash: {notice:'レシピを投稿できませんでした'}
     end
   end
 
@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
-      redirect_to recipes_path,notice:"編集しました"
+      redirect_to recipes_path, flash: {notice:'レシピを編集しました'}
     else
       render 'edit'
     end
