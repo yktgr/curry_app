@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
   before_action:set_shop,only:[:edit,:update,:show,:destroy]
-  # before_action :authenticate_user!, only: [:new, :create]
+  # before_action :authenticate_user!, only: [:show]
+
   def index
     if @search_recipes.present?
     @recipes =  @search_recipes.updated
@@ -10,7 +11,6 @@ class RecipesController < ApplicationController
   else
     @recipes =  Recipe.all.updated
   end
-
   end
 
   def new
