@@ -28,6 +28,7 @@
 #               password_confirmation: "password",
 #               )
 
+
 Shop.create(name: "A",
              address: "千葉県",
              user_id: 1)
@@ -35,3 +36,4 @@ Shop.create(name: "A",
               address: "東京都",
               user_id: 1
               )
+

@@ -1,11 +1,15 @@
 class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
+
   before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @recipes =  Recipe.all.updated
+
     @q = Recipe.ransack(params[:q])
     @result =  @q.result(distinct: true)
     @recipes =  @result if @result.present?
+
   end
 
   def new
