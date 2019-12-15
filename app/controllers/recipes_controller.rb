@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
     @q = Recipe.ransack(params[:q])
     @result =  @q.result(distinct: true)
     @recipes =  @result if @result.present?
+  
   end
 
   def new
