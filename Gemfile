@@ -18,10 +18,7 @@ gem 'jquery-rails'
 gem "jquery-turbolinks"
 gem 'nested_form_fields'
 gem 'nested_form'
-
 gem 'devise'
-gem 'devise-bootstrap-views'
-
 gem 'enum_help'
 gem 'ransack'
 gem 'rails-i18n'
