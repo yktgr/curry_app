@@ -2,7 +2,7 @@
 <div class="container">
 <h2><%= t('recipe.index')%></h2>
   <%= search_form_for @q, url: recipes_path do |f| %>
-  <li id="search"><%= f.label t('recipe.curry_type') %>の検索
+  <li id="search"><%= f.label t('recipe.curry_type') %>検索
       <%= f.select :curry_type_eq ,Recipe.curry_types.map{|k,v| [Recipe.curry_types_i18n[k], v]}, include_blank: true %>
       <%= f.submit t('header.search') %></li>
   <% end %>

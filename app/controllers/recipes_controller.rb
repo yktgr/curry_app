@@ -6,13 +6,12 @@ class RecipesController < ApplicationController
     @q = Recipe.ransack(params[:q])
     @result =  @q.result(distinct: true)
     @recipes =  @result if @result.present?
-  
   end
 
   def new
     @recipe = Recipe.new
-    0.times{ @recipe.materials.build}
-    0.times{ @recipe.flows.build }
+    3.times{ @recipe.materials.build}
+    3.times{ @recipe.flows.build }
   end
 
   def create

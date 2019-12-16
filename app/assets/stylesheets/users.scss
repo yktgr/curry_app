@@ -4,6 +4,7 @@
 
 
 .user{
+  list-style: none;
   position: relative;
   margin-bottom: 30px;
   line-height: 50px;
@@ -11,16 +12,18 @@
 
 
 .user_recipe{
+  list-style: none;
   display:block;
   float: left;
   both: clear;
 }
 
 .user_like{
+  list-style: none;
   float: left;
 }
 
 #title{
   font-weight: bold;
-  color: #DC143C;
+  color: #FF9900;
 }
