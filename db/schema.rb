@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_22_070936) do
+ActiveRecord::Schema.define(version: 2019_12_09_104842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_070936) do
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "recipe_id"
-    t.text "content"
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_comments_on_recipe_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_11_22_070936) do
   end
 
   create_table "flows", force: :cascade do |t|
-    t.text "content"
+    t.text "content", null: false
     t.string "picture"
     t.bigint "recipe_id"
     t.datetime "created_at", null: false
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2019_11_22_070936) do
   end
 
   create_table "materials", force: :cascade do |t|
-    t.string "name"
-    t.string "amount"
+    t.string "name", null: false
+    t.string "amount", null: false
     t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,14 +53,25 @@ ActiveRecord::Schema.define(version: 2019_11_22_070936) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "picture"
-    t.text "content"
-    t.integer "curry_type"
+    t.text "content", null: false
+    t.integer "curry_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "shop_id", null: false
+    t.index ["shop_id"], name: "index_recipes_on_shop_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "address", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_shops_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

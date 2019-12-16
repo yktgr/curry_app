@@ -1,22 +1,29 @@
 class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
-  # before_action :authenticate_user!, only: [:new, :create]
+
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
-    @recipes = Recipe.all
+    @recipes =  Recipe.all.updated
+
+    @q = Recipe.ransack(params[:q])
+    @result =  @q.result(distinct: true)
+    @recipes =  @result if @result.present?
+
   end
 
   def new
     @recipe = Recipe.new
-    @recipe.materials.build
-    @recipe.flows.build
+    3.times{ @recipe.materials.build}
+    3.times{ @recipe.flows.build }
   end
 
   def create
-    @recipe = current_user.recipes.build(recipe_params)
+    @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      redirect_to recipes_path ,notice:'成功'
+      redirect_to recipes_path ,flash: {notice:'レシピを投稿しました'}
     else
-      render 'new',notice:'失敗'
+      render 'new', flash: {notice:'レシピを投稿できませんでした'}
     end
   end
 
@@ -30,7 +37,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
-      redirect_to recipes_path,notice:"編集しました"
+      redirect_to recipes_path, flash: {notice:'レシピを編集しました'}
     else
       render 'edit'
     end
@@ -44,11 +51,9 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name,:picture,:content,:curry_type,:user_id,
-      materials_attributes: [:name,:amount,:recipe_id,:_destroy],
-      flows_attributes: [:content,:picture,:recipe_id,:_destroy]
-    )
+    params.require(:recipe).permit(:id,:name,:picture,:content,:curry_type,:user_id,:shop_id, :remove_picture,
+        materials_attributes: [:id,:name,:amount,:recipe_id,:_destroy],
+        flows_attributes: [:id,:content,:picture,:recipe_id,:_destroy, :remove_picture]
+      )
   end
-
-
 end
