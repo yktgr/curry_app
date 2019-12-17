@@ -21,7 +21,7 @@ class ShopsController < ApplicationController
 
   def destroy
     if current_user.id == @shop.user_id
-    @recipe.destroy
+    @shop.destroy
     redirect_to recipes_path,notice:'削除しました'
   else
     redirect_to recipes_path,notice:'権限がありません'
@@ -32,7 +32,8 @@ class ShopsController < ApplicationController
   end
 
   def update
-    if @shop.update(shop_params)
+    if
+      @shop.update(shop_params)
       redirect_to recipes_path,notice:"編集しました"
     else
       render 'edit'

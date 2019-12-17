@@ -9,7 +9,7 @@
         <th></th><td><%= image_tag @recipe.picture.url %></td>
       </tr>
       <tr>
-        <th><%= f.label 'delete' %></th>
+        <th><%= f.label t('view.delete') %></th>
         <td><%= f.check_box :remove_picture %></td>
       </tr>
     <% else %>
