@@ -20,11 +20,11 @@ class UsersController < ApplicationController
 
   def destroy
     if current_user.id == @user.id
-    @user.destroy
-    redirect_to recipes_path,notice:'削除しました'
-  else
-    redirect_to recipes_path,notice:'権限がありません'
-  end
+      @user.destroy
+      redirect_to recipes_path,notice:'削除しました'
+    else
+      redirect_to recipes_path,notice:'権限がありません'
+    end
   end
 
   private

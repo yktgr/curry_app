@@ -1,6 +1,4 @@
 <div class="container">
-
-
 <h2><%= t('user.edit') %></h2>
 <% @user.errors.full_messages.each do |msg| %>
   <div><%= msg %></div>
@@ -20,7 +18,6 @@
     <th><%= f.label :picture %></th><td><%= f.file_field :picture %></td>
   </tr>
   <% end %>
-
   <tr>
     <th><%= f.label :name %></th><td><%= f.text_field :name %></td>
   </tr>

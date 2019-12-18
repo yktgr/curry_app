@@ -17,8 +17,10 @@
               <tr><th><%= t('view.post') %></th><td><%= User.find(@recipe.user_id).name %></td></tr>
               <tr><th><%= t('view.update') %></th><td><%= @recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
             </table>
-            <li id="recipe_del"><%= link_to t('view.edit'),edit_recipe_path(@recipe.id) if current_user.id == @recipe.user_id %> |
-              <%= link_to t('view.delete'),recipe_path(@recipe.id), method: :delete if current_user.id == @recipe.user_id %></li>
+            <% if current_user.id == @recipe.user_id %>
+            <li id="recipe_del"><%= link_to t('view.edit'),edit_recipe_path(@recipe.id)  %>
+              <%= link_to t('view.delete'),recipe_path(@recipe.id), method: :delete %></li>
+              <% end %>
             <% unless @recipe.user_id == current_user.id %>
               <% if @favorite.present? %>
                 <button type="button" class=" btn btn-danger btn-sm"><%= link_to t('view.dislike'), recipe_like_path(id: @favorite.id), method: :delete %></button>
