@@ -6,9 +6,9 @@ def create
 
   respond_to do |format|
     if @comment.save
-      format.html { redirect_to recipe_path(@recipe) }
+      format.js { render :index }
     else
-      format.html { redirect_to recipe_path(@recipe), notice: '投稿失敗' }
+      format.html { redirect_to recipe_path(@recipe), notice: 'コメント投稿失敗' }
     end
   end
 end
@@ -16,7 +16,7 @@ end
 def destroy
   @comment = Comment.find(params[:id])
   @comment.destroy
-  redirect_to recipe_path(@comment.recipe_id)
+  redirect_to recipe_path(@comment.recipe_id), notice: 'コメント削除しました'
 end
 
   private

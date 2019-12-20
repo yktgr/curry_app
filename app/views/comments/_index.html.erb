@@ -1,7 +1,7 @@
 
 <div class="container">
-  <div id= comment>
-    <% @comments.each do |comment| %>
+  <div id="comment">
+    <% comments.each do |comment| %>
       <% if comment.id.present? %>
         <li id="post_user"><%= t('view.post') %>
           <%= User.find(comment.user_id).name %>

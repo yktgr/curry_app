@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
     @recipes =  Recipe.order(created_at: :desc)
     @q = Recipe.ransack(params[:q])
     @result =  @q.result(distinct: true).order(created_at: :desc)
-    @recipes =  @result if @result.present?
+    @recipes =  @result if @result.present? && @resulet != nil
   end
 
   def new
@@ -56,4 +56,3 @@ class RecipesController < ApplicationController
       )
   end
 end
-

@@ -22,7 +22,6 @@ gem 'devise'
 gem 'enum_help'
 gem 'ransack'
 gem 'rails-i18n'
-gem 'pry-byebug'
 gem 'select2-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
@@ -42,16 +41,12 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry-byebug'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
-  gem 'webdrivers'
-  gem 'capybara', '>= 2.15'
 end
 
 group :test do

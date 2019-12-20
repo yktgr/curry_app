@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
   scope :updated, -> {order(updated_at: :desc)}
   has_many :recipe_likes, dependent: :destroy
   has_many :likes_users, through: :recipe_likes, source: :user, dependent: :destroy
-  has_many :comments, dependent: :destroy, inverse_of: :recipe
+  has_many :comments, dependent: :destroy
   has_many :materials, dependent: :destroy, inverse_of: :recipe
   accepts_nested_attributes_for :materials, allow_destroy: true
   has_many :flows, dependent: :destroy, inverse_of: :recipe

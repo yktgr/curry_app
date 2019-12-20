@@ -31,8 +31,7 @@
           </div>
         </div>
     </div>
-
-    <div  class="col-sm-2 col-md-4">
+    <div class="col-sm-2 col-md-4">
       <table class="material">
         <caption><%= t('material.name') %></caption>
           <tr><th><%= t('material.name') %></th><th><%= t('material.amount') %></th></tr>
@@ -43,7 +42,7 @@
     </div>
   </div>
 <div class="row">
-  <div  class="col-sm-1 col-md-8">
+  <div  class="col-sm-2 col-md-8">
     <% @recipe.flows.each.with_index(1) do |flow,i|  %>
       <div class="flow">
         <div><%= "#{i}" %>. <%= t('flow.content') %></div>
@@ -57,10 +56,11 @@
     <% end %>
   </div>
 <div class="row">
-  <div class="col-sm-2 col-md-4">
+  <div class="col-sm-2 col-md-3">
     <div id="comments_area">
       <%= render partial: 'comments/index', locals: {comments: @comments, recipe: @recipe} %>
+      </div>
+
       <%= render partial: 'comments/form', locals: {comment: @comment, recipe: @recipe} %>
-    </div>
   </div>
 </div>
