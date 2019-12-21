@@ -22,7 +22,6 @@ gem 'devise'
 gem 'enum_help'
 gem 'ransack'
 gem 'rails-i18n'
-gem 'select2-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 

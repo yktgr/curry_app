@@ -13,11 +13,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery/dist/jquery.js
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require select2
+//= require jquery/dist/jquery.js
 //= require nested_form_fields
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .
