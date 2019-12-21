@@ -1,6 +1,13 @@
 <div class="container">
   <div class="shop_new">
     <h2><%= t('shop.new')%></h2>
+      <% if @shop.errors.any? %>
+          <ul>
+          <% @shop.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        <% end %>
           <%= render 'form' %>
   </div>
 </div>

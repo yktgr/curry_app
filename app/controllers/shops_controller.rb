@@ -11,8 +11,8 @@ class ShopsController < ApplicationController
   end
 
   def create
-    shop = Shop.new(shop_params)
-    if shop.save
+    @shop = Shop.new(shop_params)
+    if @shop.save
       redirect_to shops_path ,notice:'ショップを登録しました'
     else
       render 'new',notice:'登録に失敗しました'
@@ -22,9 +22,9 @@ class ShopsController < ApplicationController
   def destroy
     if current_user.id == @shop.user_id
       @shop.destroy
-      redirect_to recipes_path,notice:'削除しました'
+      redirect_to shops_path,notice:'削除しました'
     else
-      redirect_to recipes_path,notice:'権限がありません'
+      redirect_to shops_path,notice:'権限がありません'
     end
   end
 
@@ -34,7 +34,7 @@ class ShopsController < ApplicationController
   def update
     if
       @shop.update(shop_params)
-      redirect_to recipes_path,notice:"編集しました"
+      redirect_to shops_path,notice:"編集しました"
     else
       render 'edit'
     end
