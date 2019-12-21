@@ -14,7 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery/dist/jquery.js
-//= require jquery3
+//= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require select2
