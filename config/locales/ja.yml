@@ -15,6 +15,7 @@ ja:
     signup:  "新規登録"
     search:  "検索"
     forgot: "パスワードを忘れた？"
+    send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
   recipe:
     index: "レシピ一覧"
     name: "メニュー"
@@ -34,8 +35,6 @@ ja:
         fish: フィッシュ
         vege: 野菜
         other: 他
-
-
   user:
     name: "ユーザー"
     picture: "画像"
