@@ -14,7 +14,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
-gem "jquery-turbolinks"
+gem 'jquery-turbolinks'
 gem 'nested_form_fields'
 gem 'nested_form'
 gem 'devise'

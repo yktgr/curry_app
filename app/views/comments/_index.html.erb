@@ -5,7 +5,9 @@
       <% if comment.id.present? %>
         <li id="post_user"><%= t('view.post') %>
           <%= User.find(comment.user_id).name %>
-          <%= link_to t('view.delete'), recipe_comment_path(comment.recipe.id, comment.id), method: :delete, remote: true %></li>
+          <% if comment.user == current_user %>
+            <%= link_to t('view.delete'), recipe_comment_path(comment.recipe_id, comment.id), method: :delete, remote: true %></li>
+          <%end%>
         <li id="area"><%= comment.content %></li>
         <li></li>
       <% end %>

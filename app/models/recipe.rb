@@ -6,7 +6,6 @@ class Recipe < ApplicationRecord
   validates :name, presence: true ,length: { maximum:30 }
   validates :content, presence: true ,length: { maximum:100 }
   validates :curry_type, presence: true
-  scope :updated, -> {order(updated_at: :desc)}
   has_many :recipe_likes, dependent: :destroy
   has_many :likes_users, through: :recipe_likes, source: :user, dependent: :destroy
   has_many :comments, dependent: :destroy

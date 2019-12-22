@@ -14,9 +14,9 @@ def create
 end
 
 def destroy
-  @comment = Comment.find(params[:id])
+  @comment =  Comment.find(params[:id])
   @comment.destroy
-  redirect_to recipe_path(@comment.recipe_id), notice: 'コメント削除しました'
+  render :index, notice: 'コメントを削除しました'
 end
 
   private

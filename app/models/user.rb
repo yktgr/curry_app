@@ -7,5 +7,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :recipe_likes, dependent: :destroy, inverse_of: :user
-  has_many :comments, dependent: :destroy, inverse_of: :user
+  has_many :comments, dependent: :destroy
 end
