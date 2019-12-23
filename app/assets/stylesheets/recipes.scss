@@ -3,7 +3,6 @@
 // 共通
 .recipe_box{
   width:200px;
-  height: 350px;
   border: solid 1px #C0C0C0;
   background-color: white;
   margin: 10px 20px 20px  0px;
@@ -22,7 +21,6 @@
 }
 
 .recipe_inf{
-  height: 100px;
   line-height: 25px;
   margin-top: 4px;
   margin-left: 5px;
@@ -82,7 +80,7 @@ table.recipe_tbl td{
 
 .new_recipe{
 font-size: 0.9rem;
-height: 400px;
+// height: 400px;
 list-style: none;
 }
 
@@ -104,8 +102,6 @@ list-style: none;
 .new_material li{
   margin-bottom: 3px;
 }
-
-
 
 #new_flow {
   padding-top:10px;
@@ -129,6 +125,7 @@ table.material {
   width: 100%;
   border: solid 1px #C0C0C0;
 }
+
 table.material td ,
 table.material th{
   border: solid 1px #C0C0C0;
@@ -138,9 +135,8 @@ table.material th{
 
 #recipe_content{
   word-wrap: break-word;
-  height: 100px;
   width: 300px;
-  background-color:  #f5f5f5;
+  background-color:  #fff;
   float: left;
   border: solid 1px #C0C0C0;
   padding: 4px 4px 4px 4px;
@@ -151,7 +147,6 @@ table.material th{
   margin-top: 10px;
 }
 
-
 .flow {
   width: 200px;
   margin-top: 20px;
@@ -161,7 +156,8 @@ table.material th{
 }
 
 #flow_show {
-  height: 100px;
+  word-wrap: break-word;
   margin-top: 20px;
   padding: 5px;
+  font-size: 0.9rem;
 }

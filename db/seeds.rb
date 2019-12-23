@@ -60,8 +60,10 @@ Shop.create(name: "Eカレー",
 )
 3.times do |i|
 i =  i + 1
+name = ['','ポーク','ビーフ','フィッシュ']
+
 r = Recipe.create(
-  name: "チキンカレー",
+  name: "#{name[i]}カレー",
   content: "この店の人気メニューをコピーしました。",
   curry_type: i,
   shop_id: i,
@@ -95,7 +97,7 @@ r.flows.create(
   content: "玉ねぎを炒める"
 )
 r.flows.create(
-  content: "#{:curry_type[i] }を炒める"
+  content: "#{name[i]}を炒める"
 )
 
 r.flows.create(

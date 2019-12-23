@@ -1,9 +1,10 @@
 <div class="container">
 <h2><%= @user.name %>の<%=t('header.mypage') %></h2>
   <div class="user">
+    <% if current_user.id == @user.id %>
     <li><%= link_to t('view.edit') , edit_user_path(@user.id) %> |
-    <%= link_to t('view.delete'),user_path(@user.id), method: :delete if current_user.id == @user.id %></li>
-
+    <%= link_to t('view.delete'),user_path(@user.id), method: :delete %></li>
+    <% end %>
     <div class="picture">
       <% if @user.picture.url.present? %>
         <div><%= image_tag @user.picture.url, size:'190x190' %></div>
@@ -58,7 +59,7 @@
           <tr><th><%= t('shop.name') %></th><td><%= Shop.find(like.recipe.shop_id).name %></td></tr>
           <tr><th><%= t('recipe.name') %></th><td><%= like.recipe.name %></td></tr>
           <tr><th><%= t('recipe.curry_type') %></th><td><%= like.recipe.curry_type_i18n %></td></tr>
-          <tr><th><%= t('view.post') %></th><td><%= User.find(like.user_id).name %></td></tr>
+          <tr><th><%= t('view.post') %></th><td><%= User.find(like.recipe.user_id).name %></td></tr>
           <tr><th><%= t('view.update') %></th><td><%= like.recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
         </table>
 

@@ -19,3 +19,8 @@
 //= require jquery.turbolinks
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .
+
+
+$(function(){
+   setTimeout("$('.alert alert-danger').fadeOut('slow')", 1000)
+   })

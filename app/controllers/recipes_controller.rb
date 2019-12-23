@@ -2,16 +2,18 @@ class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
   before_action :authenticate_user!, only: [:index, :new, :create]
   def index
+    if Recipe.ransack(params[:q]).present?
     @q = Recipe.ransack(params[:q])
     @result =  @q.result(distinct: true).order(created_at: :desc)
-    if @result.count == 0
-      @recipes =  Recipe.order(created_at: :desc)
-      flash.now[:alert] = '該当のレシピがありません'
-    else
-      @recipes =  @result
+    @recipes =  @result
+  else
+    @recipes　= Recipe.order(created_at: :desc)
     end
-      @recipes　= Recipe.order(created_at: :desc)
+
   end
+
+
+
 
   def new
     @recipe = Recipe.new

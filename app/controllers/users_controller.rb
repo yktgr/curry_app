@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    redirect_to recipes_path unless current_user == @user || current_user.admin == true
   end
 
   def update
