@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-      redirect_to recipes_path unless current_user == @recipe.user_id || current_user.admin == true
+      redirect_to recipes_path unless current_user.id == @recipe.user_id
   end
 
   def update

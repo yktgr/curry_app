@@ -6,6 +6,6 @@ class RecipeLikesController < ApplicationController
 
   def destroy
     favorite = current_user.recipe_likes.find_by(id: params[:id]).destroy
-      redirect_to recipe_path(favorite.recipe_id), notice: "お気に入りレシピに解除しました"
+    redirect_to recipe_path(favorite.recipe_id), notice: "お気に入りレシピに解除しました"
   end
 end

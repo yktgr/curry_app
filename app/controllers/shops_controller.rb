@@ -29,6 +29,7 @@ class ShopsController < ApplicationController
   end
 
   def edit
+    redirect_to shops_path unless current_user.id == @shop.user_id || current_user.admin == true
   end
 
   def update
