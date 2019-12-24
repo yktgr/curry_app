@@ -3,16 +3,13 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create]
   def index
     if Recipe.ransack(params[:q]).present?
-    @q = Recipe.ransack(params[:q])
-    @result =  @q.result(distinct: true).order(created_at: :desc)
-    @recipes =  @result
-  else
-    @recipes　= Recipe.order(created_at: :desc)
+      @q = Recipe.ransack(params[:q])
+      @result =  @q.result(distinct: true).order(created_at: :desc)
+      @recipes =  @result
+    else
+      @recipes　= Recipe.order(created_at: :desc)
     end
-
   end
-
-
 
 
   def new
@@ -39,6 +36,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
+      redirect_to recipes_path unless current_user == @recipe.user_id || current_user.admin == true
   end
 
   def update
