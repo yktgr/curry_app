@@ -2,15 +2,11 @@ class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
   before_action :authenticate_user!, only: [:index, :new, :create]
   def index
-    if Recipe.ransack(params[:q]).present?
-      @q = Recipe.ransack(params[:q])
-      @result =  @q.result(distinct: true).order(created_at: :desc)
-      @recipes =  @result
-    else
-      @recipes　= Recipe.order(created_at: :desc)
-    end
+        @q = Recipe.ransack(params[:q])
+        @result =  @q.result(distinct: true).order(created_at: :desc)
+        @recipes =  @result
+        @recipes　= Recipe.all.order(created_at: :desc)
   end
-
 
   def new
     @recipe = Recipe.new
@@ -20,11 +16,11 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    if @recipe.save
-      redirect_to recipes_path, notice:'レシピを投稿しました'
-    else
-      render 'new', notice:'レシピを投稿できませんでした'
-    end
+      if @recipe.save
+        redirect_to recipes_path, notice:'レシピを投稿しました'
+      else
+        render 'new', notice:'レシピを投稿できませんでした'
+      end
   end
 
   def destroy
@@ -41,7 +37,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
-      redirect_to recipes_path, flash: {notice:'レシピを編集しました'}
+      redirect_to recipes_path, notice:'レシピを編集しました'
     else
       render 'edit'
     end
