@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     @shop = Shop.find(params[:id])
   end
 
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
   def after_sign_in_path_for(resource)
     recipes_path
   end

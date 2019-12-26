@@ -6,7 +6,7 @@ end
 
 resources :users
 resources :recipes do
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy, :edit, :update]
 end
 resources :shops
 resources :recipe_likes, only: [:create, :destroy]
