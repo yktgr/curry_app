@@ -3,19 +3,7 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-# 50.times do |n|
-#   name = Faker::Games::Pokemon.name
-#   email = Faker::Internet.email
-#   password = "password"
-#   User.create!(name: name,
-#                email: email,
-#                password: password,
-#                password_confirmation: password,
-#                )
-# end
-# # #
+
 User.create!(name: "user1",
              email: "user1@user.com",
              password: "password",
@@ -42,10 +30,12 @@ User.create!(name: "user3",
 Shop.create(name: "Aカレー",
              address: "千葉県",
              user_id: 1)
+
 Shop.create(name: "Bカレー",
             address: "東京都",
             user_id: 2
 )
+
 Shop.create(name: "Cカレー",
             address: "東京都",
             user_id: 2
@@ -58,17 +48,20 @@ Shop.create(name: "Eカレー",
              address: "東京都",
              user_id: 4
 )
-3.times do |i|
-i =  i + 1
-name = ['','ポーク','ビーフ','フィッシュ']
+20.times do |i|
+c =  rand(0..4)
+s =  rand(5) + 1
+u =  rand(1..4)
+name = ['チキン','ポーク','ビーフ','フィッシュ','野菜']
 
 r = Recipe.create(
-  name: "#{name[i]}カレー",
+  name: "#{name[c]}カレー",
   content: "この店の人気メニューをコピーしました。",
-  curry_type: i,
-  shop_id: i,
-  user_id: 2
+  curry_type: c,
+  shop_id: s,
+  user_id: u
 )
+
 r.materials.create(
   name: "玉ねぎ",
   amount: "一個",
@@ -97,7 +90,7 @@ r.flows.create(
   content: "玉ねぎを炒める"
 )
 r.flows.create(
-  content: "#{name[i]}を炒める"
+  content: "#{name[c]}を炒める"
 )
 
 r.flows.create(
@@ -106,5 +99,11 @@ r.flows.create(
 
 r.flows.create(
   content: "１，２を投入し煮込む"
+)
+
+r.comments.create(
+  content: "test",
+  recipe_id: r.id,
+  user_id: u
 )
 end

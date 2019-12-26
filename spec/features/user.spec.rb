@@ -3,13 +3,13 @@ RSpec.feature "ユーザー機能", type: :feature do
 
   background do
     FactoryBot.create(:user)
-    FactoryBot.create(:second_user)
+    FactoryBot.create(:user_second)
   end
 
   scenario "ユーザー登録" do
     visit new_user_registration_path
-        fill_in '名前', with: 'user'
-        fill_in 'メールアドレス', with: 'user@user.com'
+        fill_in '名前', with: 'test'
+        fill_in 'メールアドレス', with: 'test@test.com'
         fill_in 'パスワード', with: 'password'
         fill_in '確認用パスワード', with: 'password'
         click_button '新規登録'

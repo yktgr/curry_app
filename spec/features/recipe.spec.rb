@@ -26,8 +26,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'Bカレー'
   end
 
-
-
   scenario "レシピ作成のテスト" do
     visit new_recipe_path
     select 'Aカレー',from: 'recipe[shop_id]'
