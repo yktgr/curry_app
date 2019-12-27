@@ -3,7 +3,7 @@
   <div id= "comment" >
     <li><%= form_with( model:[recipe, comment],remote: true)  do |f| %></li>
     <li><%= f.label t('view.comment') %></li>
-    <li><%= f.text_area :content %></li>
+    <li id="rspec"><%= f.text_area :content %></li>
     <li><%= f.submit %></li>
     <% end %>
   </div>

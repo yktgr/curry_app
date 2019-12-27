@@ -7,7 +7,7 @@ RSpec.feature "recipe管理機能", type: :feature do
     FactoryBot.create(:recipe_second)
     FactoryBot.create(:shop)
     FactoryBot.create(:shop_second)
-    visit root_path
+        visit root_path
         fill_in 'メールアドレス', with: 'user1@user.com'
         fill_in 'パスワード', with: 'password'
         click_button 'ログイン'
@@ -64,15 +64,24 @@ end
   scenario "レシピ削除のテスト" do
     FactoryBot.create(:recipe_third)
     visit root_path
-    
+    click_link 'レシピの詳細', match: :first
     click_link '削除'
     expect(page).to have_content 'ポークカレー'
   end
 
-  ‹# it "コメント投稿テスト" , js: true do
+  # scenario "レシピ投稿のテスト" do
+  #   visit root_path
   #   click_link 'レシピの詳細', match: :first
-  #   fill_in 'comment[content]', with: 'ffffff'
-  #   click_button '登録する'
-  #   expect(page).to have_content 'ffffff'
-  # end›
-end
+  #   fill_in 'comment[content]', with: "テスト"
+  #   click_on '登録する'
+  #   sleep 2
+  #   expect(page).to have_content 'テスト'
+  # end
+  scenario "レシピ投稿のテスト", js: true do
+    visit root_path
+    click_link 'レシピの詳細', match: :first
+    fill_in 'comment[content]', with: 'コメントのテスト'
+    click_button '登録する'
+    expect(page).to have_content 'テスト'
+  end
+  end
