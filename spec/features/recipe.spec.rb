@@ -69,20 +69,11 @@ end
     expect(page).to have_content 'ポークカレー'
   end
 
-  # scenario "レシピ投稿のテスト" do
-  #   visit root_path
-  #   click_link 'レシピの詳細', match: :first
-  #   fill_in 'comment[content]', with: "テスト"
-  #   click_on '登録する'
-  #   sleep 2
-  #   expect(page).to have_content 'テスト'
-  # end
-  scenario "レシピ投稿のテスト" do
+  scenario "レシピ投稿のテスト",js: true do
     visit root_path
     click_link 'レシピの詳細', match: :first
-    fill_in 'comment[content]', with: 'コメントのテスト'
-    click_button '登録する'
-    sleep 2
-    expect(page).to have_content 'コメントのテスト'
+    fill_in 'comment[content]', with: "テスト"
+    click_on '登録する'
+    expect(page).to have_content "テスト"
   end
   end
