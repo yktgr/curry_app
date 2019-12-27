@@ -69,7 +69,7 @@ end
     expect(page).to have_content 'ポークカレー'
   end
 
-  scenario "レシピ投稿のテスト",js: true do
+  scenario "コメントのテスト",js: true do
     visit root_path
     click_link 'レシピの詳細', match: :first
     fill_in 'comment[content]', with: "テスト"
