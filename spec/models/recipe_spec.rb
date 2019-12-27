@@ -26,7 +26,51 @@ RSpec.describe Recipe, type: :model do
       shop_id: 1)
     expect(recipe).to be_valid
   end
-  #
+
+  it "nameが31文字以上あるとバリデーションが通らない" do
+    r = "r"*31
+    recipe = Recipe.new(
+      name: r ,
+      content:'test',
+      curry_type: 0,
+      shop_id: 1
+      )
+    expect(recipe).not_to be_valid
+    end
+
+    it "nameが30文字以下であるとバリデーションが通らない" do
+      r = "r"*30
+      recipe = Recipe.new(
+        name: r ,
+        content:'test',
+        curry_type: 0,
+        shop_id: 1
+        )
+      expect(recipe).to be_valid
+      end
+
+      it "contentが101文字以上あるとバリデーションが通らない" do
+        r = "r"*101
+        recipe = Recipe.new(
+          name: 'test' ,
+          content: r,
+          curry_type: 0,
+          shop_id: 1
+          )
+        expect(recipe).not_to be_valid
+        end
+
+        it "contentが100文字以下であるとバリデーションが通らない" do
+          r = "r"*100
+          recipe = Recipe.new(
+            name: 'test' ,
+            content: r,
+            curry_type: 0,
+            shop_id: 1
+            )
+          expect(recipe).to be_valid
+          end
+
   describe "検索テスト" do
     before do
       @recipe1 = FactoryBot.create(:recipe)

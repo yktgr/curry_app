@@ -25,7 +25,8 @@ RSpec.describe Recipe, type: :model do
       )
     expect(shop).to be_valid
   end
-  #
+
+  
   describe "検索テスト" do
   it "店名" do
     q = Shop.ransack("Aカレー")

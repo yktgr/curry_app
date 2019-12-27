@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.feature "タスク管理機能", type: :feature do
+RSpec.feature "recipe管理機能", type: :feature do
   before do
     FactoryBot.create(:user)
     FactoryBot.create(:user_second)
@@ -19,6 +19,13 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'ポークカレー'
     expect(page).to have_content 'チキンカレー'
   end
+
+scenario "レシピ検索機能" do
+  visit root_path
+  select 'ポーク',from: 'q[curry_type_eq]'
+  click_button "検索"
+  expect(page).to have_content 'Bカレー'
+end
 
   scenario "レシピ詳細のテスト" do
     visit root_path
@@ -57,9 +64,15 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "レシピ削除のテスト" do
     FactoryBot.create(:recipe_third)
     visit root_path
-    click_link 'レシピの詳細', match: :first
+    
     click_link '削除'
     expect(page).to have_content 'ポークカレー'
   end
 
+  ‹# it "コメント投稿テスト" , js: true do
+  #   click_link 'レシピの詳細', match: :first
+  #   fill_in 'comment[content]', with: 'ffffff'
+  #   click_button '登録する'
+  #   expect(page).to have_content 'ffffff'
+  # end›
 end
