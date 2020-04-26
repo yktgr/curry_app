@@ -21,6 +21,8 @@
       </div>
         <% if user_signed_in? %>
           <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+          </ul>
             <ul class="nav navbar-nav">
                 <li><%= link_to t('header.logout'), destroy_user_session_path, method: :delete %></li>
                 <li><a>|</a></li>
