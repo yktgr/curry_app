@@ -1,8 +1,7 @@
-<div class="container">
-  <div>
+   <div>
     <%= form_with( model: @comment, remote: true, url:recipe_comment_path,html: {method: "patch"})  do |f| %></li>
     <div><%= f.text_area :content %></div>
     <div><%= f.submit %></div>
     <% end %>
   </div>
-  </div>
+

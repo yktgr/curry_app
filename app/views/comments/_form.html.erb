@@ -1,10 +1,7 @@
-
-<div class="container">
-  <div id= "comment" >
-    <li><%= form_with( model:[recipe, comment],remote: true)  do |f| %></li>
-    <li><%= f.label t('view.comment') %></li>
-    <li class="rspec"><%= f.text_area :content %></li>
-    <li><%= f.submit %></li>
+<div class="form">
+    <%= form_with( model:[recipe, comment],remote: true)  do |f| %>
+      <div><%= f.label t('view.comment') %></div>
+      <div><%= f.text_area :content %></div>
+      <div><%= f.submit %></div>
     <% end %>
-  </div>
 </div>

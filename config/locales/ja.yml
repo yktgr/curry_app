@@ -55,11 +55,11 @@ ja:
   shop:
     name: "店名"
     address: "住所"
-    index: "お店の一覧"
+    index: "お店の情報"
     new: "お店の登録"
   view:
     update: "更新日"
-    created: "登録日"
+    created: "投稿"
     add: "追加"
     delete: "削除"
     edit: "編集"
