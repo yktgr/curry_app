@@ -52,8 +52,6 @@ body{
   color: rgb(70, 70, 70);
 }
 
-
-
 /* ナビゲーション */
 
 .navbar{
@@ -125,3 +123,43 @@ body{
   text-decoration: none;
   color: white;
 }
+=======
+ #logo{
+  margin-left: 10px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Helvetica Neue" , Helvetica ;
+ }
+
+ .header{
+   font-size: 0.9rem;
+   width:100%;
+ }
+
+ textarea{
+  resize: none;
+ }
+
+ .navbar-default {
+   width: 100%;
+   background-color: #fff;
+   border-bottom: solid 4px #FFD700;
+ }
+
+ nav li{
+   list-style: none;
+   float: left;
+   text-align: center;
+   margin-bottom: 3px;
+ }
+
+ #new_button{
+   width: 100px;
+   background: #f75a0c;
+   border: solid 1px #d2c8be;
+   border-radius: 15px;
+   text-align: center;
+   display: block;
+ }
