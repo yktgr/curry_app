@@ -49,8 +49,8 @@
       <div class="add"><button type="button" class=" btn btn-warning btn-sm"><%= f.add_nested_fields_link :materials,  t('view.add'), role: 'button'%></button></div>
       <div class="data">
         <%= f.nested_fields_for :materials do |material| %>
-          <div id="material"><span><%= material.text_field :name, placeholder: "材料名" %></span><span><%= material.text_field :amount, placeholder: "分量" %></span>
-          <button type="button" class=" btn btn-danger  btn-sm"><%= material.remove_nested_fields_link t('view.delete'), role: 'button' %></button>
+          <div id="material"><span id="m_name"><%= material.text_field :name, placeholder: "材料名" %></span><span id="m_amount"><%= material.text_field :amount, placeholder: "分量" %></span>
+          <button type="button" class=" btn btn-danger  btn-sm"><%= material.remove_nested_fields_link t('view.delete'), role: 'button' %></button></div>
         <% end %>
       </div>
   </div>

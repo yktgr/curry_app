@@ -105,9 +105,22 @@ textarea{
 
 
 #material{
+  width: auto;
   margin: 5px 5px;
   float: left;
+  
 }
+
+#m_name input[type="text"]{
+  width: 300px;
+  line-height: 30px;
+}
+
+#m_amount input[type="text"]{
+  width: 170px;
+  line-height: 30px;
+}
+
 
 #flow {
   counter-increment: number 1;
@@ -183,3 +196,8 @@ textarea{
   padding: 20px;
   word-wrap: break-word;
 }
+
+
+
+
+

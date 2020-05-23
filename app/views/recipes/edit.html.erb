@@ -1,3 +1,4 @@
+<div class="container"> 
 <h2><%= t('recipe.edit') %></h2>
   <% if @recipe.errors.any? %>
       <ul>
@@ -7,3 +8,4 @@
       </ul>
       <% end %>
       <%= render 'form' %>
+</div>

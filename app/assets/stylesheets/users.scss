@@ -10,20 +10,24 @@
   line-height: 50px;
 }
 
+.user_picture{
+  clear: both;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(212, 212, 212);
+  line-height: 200px;
+  text-align: center;
+  vertical-align: middle;
+  object-fit: cover;
+}
 
 .user_recipe{
-  list-style: none;
+  clear: both;
   display:block;
-  float: left;
-  both: clear;
 }
 
 .user_like{
   list-style: none;
   float: left;
-}
-
-#title{
-  font-weight: bold;
-  color: #FF9900;
 }
