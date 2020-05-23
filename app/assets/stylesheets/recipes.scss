@@ -1,164 +1,203 @@
 
 
-// 共通
+// レシピ一覧
 .recipe_box{
-  width:200px;
-  border: solid 1px #C0C0C0;
-  background-color: white;
-  margin: 10px 20px 20px  0px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+  background-color: #fff;
   float: left;
-  display: static;
+  height: 400px;
+  width: 300px;
+  margin: 10px 10px;
+  color: rgb(70, 70, 70);
+}
+
+.recipe_box:hover{
+  transition: 1s ;
+  opacity: 0.5;
 }
 
 .picture{
-  position: relative;
-  top: 4px;
-  left: 4px;
-  width:190px;
-  height: 190px;
-  background-color: #f5f5f5;
-  border: none;
+  width:auto;
+  background-color: rgb(212, 212, 212);
+  text-align: center;
+  line-height: 250px;
+  vertical-align: middle;
+  object-fit: cover;
+  border-bottom: 5px solid rgb(255, 168, 6);
 }
 
-.recipe_inf{
-  line-height: 25px;
-  margin-top: 4px;
-  margin-left: 5px;
+.recipe_inf ul{
+  width: auto;
+  height: 150px;
+  padding-top: 0;
+  padding-left: 0;
+  list-style: none;
+  text-align: left;
+}
+
+#inf_1{
+  margin-top: 10px;
+  height: 90px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#inf_2{
+  margin-bottom: 0;
+  text-align: center;
+}
+
+// #search{
+//   list-style: none;
+//   font-size: 0.7rem;
+//   font-weight: bold;
+//   padding-bottom: 0px;
+// }
+
+
+// 投稿画面
+textarea{
+  resize: none;
+  word-wrap: break-word;
+}
+
+.content{
+  margin-bottom: 50px;
+  height: 100%;
+}
+
+.data textarea{
+  width: 400px;
+  height: 100px;
+}
+
+.subject{
+  clear: both;
+  width: fit-content;
+  padding: 0px 10px ;
+  height: 33px;
+  line-height: 30px;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(255, 168, 6);
+  border: 1px solid rgb(255, 168, 6);
+  margin: 10px 20px 20px 0px; 
   float: left;
 }
 
-.recipe_tbl{
-  width: 180px;
-  position: static;
-  font-size: 0.7rem;
-  line-height: 25px;
-  margin-left: 5px;
+.add{
+ float: left;
+ margin-left: 20px;
 }
 
-table.recipe_tbl tr{
-border-bottom: solid 1px #FFD700;
-text-align: middle;
+.data{
+  clear: left;
 }
 
-table.recipe_tbl td{
-  font-size: 0.8rem;
-  text-align:center;
-  padding-left: 10px;
-}
-
-#no_pic{
-  padding-left: 45px;
-  padding-top: 45px;
-}
-
-#button{
-  font-size: 0.7rem;
+.error{
+  float: left;
+  margin-right: 30px;
+  color: rgb(70, 70, 70);
   font-weight: bold;
-  width: 100px;
-  margin-left: 50px;
-  margin-top: 10px;
-  background: #fff;
-  border: solid 1px #d2c8be;
-  border-radius: 15px;
-  text-align: center;
-  display: block;
-}
-#recipe_del{
-  list-style: none;
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-align: center;
 }
 
-#search{
-  list-style: none;
-  font-size: 0.7rem;
-  font-weight: bold;
-  padding-bottom: 0px;
-}
-// 投稿画面
 
-.new_recipe{
-font-size: 0.9rem;
-// height: 400px;
-list-style: none;
+#material{
+  width: auto;
+  margin: 5px 5px;
+  float: left;
+  
 }
 
-.new_recipe table{
-  height: 350px;
-  padding-right: 50px;
-}
-
-.new_recipe tr{
-  border-bottom: solid 1px #C0C0C0;
-  line-height: normal;
-  vertical-align: middle;
-}
-
-.new_material{
-  list-style: none;
-  font-size: 0.9rem;
-}
-.new_material li{
-  margin-bottom: 3px;
-}
-
-#new_flow {
-  padding-top:10px;
-  list-style-type: decimal;
-  font-size: 0.9rem;
-  height: 300px;
-  border-bottom: solid 1px #C0C0C0;
-}
-#flow_pic {
-margin-top: 30px;
-margin-left: 50px;
-}
-
-#flow_content {
-  margin-left: 50px;
-  margin-top: 30px;
-}
-
-// レシピ詳細
-table.material {
-  width: 100%;
-  border: solid 1px #C0C0C0;
-}
-
-table.material td ,
-table.material th{
-  border: solid 1px #C0C0C0;
-  text-align: center;
+#m_name input[type="text"]{
+  width: 300px;
   line-height: 30px;
 }
 
-#recipe_content{
-  word-wrap: break-word;
-  width: 300px;
-  min-height: 200px;
-  background-color:  #fff;
+#m_amount input[type="text"]{
+  width: 170px;
+  line-height: 30px;
+}
+
+
+#flow {
+  counter-increment: number 1;
+}
+
+#d_btn{
+  margin-left: 20px;
+}
+
+#submit{
+  float: right;
+  margin-right: 50px;
+}
+
+// レシピ詳細
+.recipe_box_show{
+  clear: left;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+  background-color: #fff;
   float: left;
-  border: solid 1px #C0C0C0;
-  padding: 4px 4px 4px 4px;
-  margin-top: 5px;
+  width: 300px;
+  margin: 0px 10px 20px 10px;
+  color: rgb(70, 70, 70);
 }
 
-#recipe_border{
-  margin-top: 10px;
+#table_show{
+  height: 200px;
+  text-align: left;
+  float: left;
+  margin-left: 20px;
 }
 
-.flow {
-  width: 200px;
-  margin-top: 20px;
-  margin-right: 5px;
-  float:left;
-  border: solid 1px #C0C0C0;
+.data_show{
+  margin-top: 70px;
 }
 
-#flow_show {
+#table_show td{
+  margin-left: 20px;
+}
+
+#content_show{
+  margin-left: 20px;
+  float: left;
+  height: 90px;  
+}
+.picture_show{
+  display: block;
+  width: 300px;
+  background-color: rgb(212, 212, 212);
+  text-align: center;
+  line-height: 250px;
+  vertical-align: middle;
+  object-fit: cover;
+}
+
+.material_show{
+  clear: left;
+}
+
+.flow_show{
+  float: left;
+  margin: 10px;
+  display: inline-block;
+}
+
+#flow_content{
+  width: 300px;
+  height: 200px;
+  border: 1px solid rgb(172, 172, 172);
+  border-radius: 3%;
+  padding: 20px;
   word-wrap: break-word;
-  margin-top: 20px;
-  padding: 5px;
-  font-size: 0.9rem;
 }
+
+
+
+
+

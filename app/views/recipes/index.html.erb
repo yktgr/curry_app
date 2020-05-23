@@ -1,29 +1,22 @@
-<div class="container">
-<h2><%= t('recipe.index')%></h2>
-  <%= search_form_for @q, url: recipes_path do |f| %>
-  <li id="search"><%= f.label t('recipe.curry_type') %>検索
-      <%= f.select :curry_type_eq ,Recipe.curry_types.map{|k,v| [Recipe.curry_types_i18n[k], v]}, include_blank: true %>
-      <%= f.submit t('header.search') %></li>
-  <% end %>
-<% @recipes.each do |recipe| %>
+<div class="container"> 
+ <% @recipes.each do |recipe| %>
+  <%= link_to recipe_path(recipe.id) do %>
   <div class="recipe_box">
     <div class="picture">
       <% if recipe.picture.url.present? %>
-        <div><%= image_tag recipe.picture.url, size:'190x190'%></div>
+        <div><%= image_tag recipe.picture.url %></div>
       <% else %>
-        <div id="no_pic"><%= image_tag 'no_photo.png', size:'90x90'%></div>
+        <div><%= image_tag 'no_photo.png', size: '50x50' %></div>
       <% end %>
     </div>
-    <div class="recipe_inf">
-      <table class="recipe_tbl" >
-        <tr><th><%= t('shop.name') %></th><td><%= Shop.find(recipe.shop_id).name %></td></tr>
-        <tr><th><%= t('recipe.name') %></th><td><%= recipe.name %></td></tr>
-        <tr><th><%= t('recipe.curry_type') %></th><td><%= recipe.curry_type_i18n %></td></tr>
-        <tr><th><%= t('view.post') %></th><td><%= User.find(recipe.user_id).name %></td></tr>
-        <tr><th><%= t('view.update') %></th><td><%= recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
-      </table>
-      <div id="button"><%= link_to t('recipe.show'),recipe_path(recipe.id), role: 'button'%></div>
+    <div class="recipe_inf" >
+      <ul>
+        <li id="inf_1"><%= "#{recipe.shop.name}風" %><%= recipe.name %></li>
+        <li  id="inf_2"><%= t('view.post') %><%=  recipe.user.name %></li>
+        <li  id="inf_2"><%= t('view.update') %><%= recipe.updated_at.strftime('%Y/%m/%d') %></li>
+      </ul>
     </div>
   </div>
+  <% end %>
 <% end %>
 </div>

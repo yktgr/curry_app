@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
   belongs_to :user, optional: true, inverse_of: :recipes
   belongs_to :shop, optional: true, inverse_of: :recipes
-  validates :shop_id, presence: true
+  validates :shop_id, presence: true 
   enum curry_type: {chicken: 0, pork: 1, beef: 2, fish: 3, vege: 4, other: 5}
   validates :name, presence: true ,length: { maximum:30 }
   validates :content, presence: true ,length: { maximum:100 }

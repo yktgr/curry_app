@@ -1,5 +1,6 @@
 <div class="container">
 <h2><%= t('shop.index')%></h2>
+<%= link_to t('shop.new'),new_shop_path %>
   <%= search_form_for @q  do |s| %>
     <li id="search"><%= s.label :name_cont, t('shop.name') %>
     <%= s.search_field :name_cont %>
