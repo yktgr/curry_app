@@ -12,12 +12,13 @@
     <nav class="navbar">
       <div class="container-fluid">
         <div class="navbar-header">
-          <div class="navbar-brand"><%= link_to "Yellow Spice Orchestra", recipes_path %></div>
+        <div class="navbar-brand"><%= link_to "Yellow Spice Orchestra", recipes_path %></div>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+        </div>
           <div id="gnavi" class="collapse navbar-collapse">
             <% if user_signed_in? %>
               <ul class="nav navbar-nav">
@@ -25,8 +26,11 @@
                   <li><%= link_to t('shop.index'),shops_path %></li>
                   <li><%= link_to t('header.mypage'),user_path(current_user.id) %></li>
                   <li><%= link_to t('header.logout'), destroy_user_session_path, method: :delete %></li>
+                  <li><%= search_form_for @q, url: recipes_path do |f| %>
+                    <%= f.select :curry_type_eq ,Recipe.curry_types.map{|k,v| [Recipe.curry_types_i18n[k], v]}, include_blank: true %>
+                    <%= f.submit t('header.search') %></li>
+              <% end %>
               </ul>
-                
             <% else %>
               <ul class="nav navbar-nav">
                   <li><%= link_to t('header.signup'), new_user_registration_path %></li>
@@ -39,8 +43,10 @@
   </header>    
 
   <body>
+  <div class="container">
     <% if notice %><div class="alert alert-danger" role="alert"><%= notice %></div><% end %>
     <% if alert %><div class="alert alert-danger" role="alert"><%= alert %></div><% end %>
+  </div>
       <%= yield %>
   </body>
 </html>

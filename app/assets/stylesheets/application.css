@@ -22,7 +22,6 @@ html{
 }
 
 header{
-  width: 100%;
   height: 55px;
   position: fixed;
   z-index: 999;
@@ -40,6 +39,7 @@ body{
 
 .container{
   display: block;
+  height: 100%;
   min-width: 500px;
   background-color: #fff;
   padding: 55px 0px 20px 20px;
@@ -47,6 +47,8 @@ body{
   top: 0;
   bottom: 0;
 }
+
+
 
 .container　a:link, a:visited, a:hover, a:active {
   color: rgb(70, 70, 70);
@@ -57,18 +59,15 @@ body{
 .navbar{
   width: 100%;
   background-color: rgb(255, 168, 6);
-  float: left;
   border-radius: 0;
   color: rgb(250, 250, 250); 
   position: fixed;
   font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
-.navbar::after {
-  display: block;
-  clear : both;
+li{
+  list-style: none;
 }
-
 .navbar a:link, a:visited,  a:active {
   color: rgb(250, 250, 250); 
   text-decoration: none;
@@ -76,14 +75,17 @@ body{
 
 .navbar li{
   font-size: 1.2rem;
+  line-height: 50px;
   background-color: rgb(255, 168, 6);
-  margin-top: 0;
+  text-align: center;
+  vertical-align: middle;
   }
 
 .navbar li a:hover{
   background-color: transparent;
   color: rgb(255, 255, 255); 
   font-weight: bold;
+  float: left;
 }
 
 .navbar-brand{
@@ -101,6 +103,22 @@ body{
 .icon-bar{
   border: 1px solid rgb(250, 250, 250);
 }
+
+.navbar form{
+  display: inline;
+  line-height: 25px;
+  font-size: 0.9rem;
+  color: black;
+  margin-left: 30px;
+  }
+
+  .navbar input{
+    /* line-height: 30px; */
+    }
+
+
+
+
 
 /* レシピ　ユーザー　共通 */
 
@@ -123,43 +141,4 @@ body{
   text-decoration: none;
   color: white;
 }
-=======
- #logo{
-  margin-left: 10px;
-  padding: 10px 10px 10px 10px;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: "Helvetica Neue" , Helvetica ;
- }
 
- .header{
-   font-size: 0.9rem;
-   width:100%;
- }
-
- textarea{
-  resize: none;
- }
-
- .navbar-default {
-   width: 100%;
-   background-color: #fff;
-   border-bottom: solid 4px #FFD700;
- }
-
- nav li{
-   list-style: none;
-   float: left;
-   text-align: center;
-   margin-bottom: 3px;
- }
-
- #new_button{
-   width: 100px;
-   background: #f75a0c;
-   border: solid 1px #d2c8be;
-   border-radius: 15px;
-   text-align: center;
-   display: block;
- }

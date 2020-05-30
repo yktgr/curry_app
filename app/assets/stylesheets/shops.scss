@@ -1,27 +1,36 @@
 // Place all the styles related to the shops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.shop_new li{
-  list-style: none;
-  font-size: 0.8rem;
-  margin-top: 20px;
-}
 
-.shop{
-  width: 800px;
+.shop_tbl{
+  display: flexbox;
   text-align: center;
-  margin-top: 20px;
   line-height: 30px;
 }
 
-.shop th{
-text-align: center;
-padding-right: 10px;
+.shop_tbl th{
 background-color:  #C0C0C0;
 }
 
-.shop td{
-text-align: center;
+.shop_tbl td{
 border-bottom: solid 1px;
-padding-left: 10px;
+}
+
+#search a:link, #search a:visited{
+  border: solid 1px black;
+  padding: 5px 10px;
+  margin-right: 50px;
+  text-decoration: none;
+  color:rgb(70, 70, 70);
+  font-weight: bold;
+}
+
+#search a:hover {
+background-color: rgb(255, 168, 6);
+}
+
+
+.shop a:link, .shop a:visited{
+  text-decoration: none;
+  color:rgb(70, 70, 70)
 }

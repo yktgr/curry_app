@@ -33,7 +33,8 @@
           <tr><th><%= t('shop.name') %></th><td><%= Shop.find(@recipe.shop_id).name %></td></tr>
           <tr><th><%= t('recipe.name') %></th><td><%= @recipe.name %></td></tr>
           <tr><th><%= t('recipe.curry_type') %></th><td><%= @recipe.curry_type_i18n %></td></tr>
-          <tr><th><%= t('view.post') %></th><td><%= User.find(@recipe.user_id).name %></td></tr>
+          <%= link_to t('recipe.new'),new_recipe_path %>
+          <tr><th><%= t('view.post') %></th><td id="user_link"><%= link_to User.find(@recipe.user_id).name, user_path(@recipe.user_id) %></td></tr>
           <tr><th><%= t('view.update') %></th><td><%= @recipe.updated_at.strftime('%Y/%m/%d') %></td></tr>
         </table>
         <div id="content_show"><%= t('recipe.content') %></th><td><%= @recipe.content %></div>

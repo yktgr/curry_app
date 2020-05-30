@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_search
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
@@ -11,6 +12,12 @@ class ApplicationController < ActionController::Base
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def set_search
+    @q = Recipe.ransack(params[:q])
+    @result =  @q.result(distinct: true).order(created_at: :desc)
+    @recipes =  @result
   end
 
   def after_sign_in_path_for(resource)

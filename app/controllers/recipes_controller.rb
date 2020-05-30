@@ -2,9 +2,6 @@ class RecipesController < ApplicationController
   before_action:set_recipe,only:[:edit,:update,:show,:destroy]
   before_action :authenticate_user!, only: [:index, :new, :create]
   def index
-        @q = Recipe.ransack(params[:q])
-        @result =  @q.result(distinct: true).order(created_at: :desc)
-        @recipes =  @result
         @recipes　= Recipe.all.order(created_at: :desc)
   end
 
