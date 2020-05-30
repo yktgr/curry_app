@@ -6,6 +6,7 @@
     <div class="user_show"><%= link_to t('view.delete'),user_path(@user.id), method: :delete %></div>
     <% end %>
 
+  
     <div class="user_picture">
       <% if @user.picture.url.present? %>
         <div class="user_picture"><%= image_tag @user.picture.url %></div>
@@ -13,6 +14,7 @@
         <div class="user_picture"><%= image_tag 'no_photo.png', size: '50x50' %></div>
       <% end %>
     </div>
+
     
   </div>
   <% if @recipes.present? %>
@@ -41,11 +43,11 @@
     </div>
    
   
-  <div class="user_recipe">
+<% if @user.id == current_user.id %>
   <% if @recipe_likes.present? %>
-    <div class="subject"><%= t('view.like')%></div>
-  <% end %>
-
+  <div class="subject"><%= t('view.like')%></div>
+<% end %>
+<div class="user_recipe">
   <% @recipe_likes.each do |like| %>
     <%= link_to recipe_path(like.recipe.id) do %>
     <div class="recipe_box">
@@ -60,11 +62,13 @@
       <div class="recipe_inf">
       <ul>
         <li id="inf_1"><%= "#{like.recipe.shop.name}風" %><%= like.recipe.name %></li>
+        <li id="inf_1"><%= t('view.user') %><%= like.recipe.user.name %></li>
+
       </ul>
       </div>
       </div>
     <% end %>
-    
+    <% end %>
   <% end %>
     </div>
     </div>

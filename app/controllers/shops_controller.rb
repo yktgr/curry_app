@@ -2,8 +2,8 @@ class ShopsController < ApplicationController
   before_action:set_shop,only:[:edit,:update,:show,:destroy]
   before_action :authenticate_user!
   def index
-    @q = Shop.ransack(params[:q])
-    @shops = @q.result(distinct: true)
+    @s = Shop.ransack(params[:q])
+    @shops = @s.result(distinct: true)
   end
 
   def new
